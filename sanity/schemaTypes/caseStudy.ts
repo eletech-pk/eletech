@@ -53,6 +53,52 @@ export default defineType({
             type: 'text',
         }),
         defineField({
+            name: 'tags',
+            title: 'Tags',
+            type: 'array',
+            of: [{ type: 'string' }],
+            options: {
+                layout: 'tags',
+            },
+            description: 'Filterable tags (e.g. AI, Automation, Web)',
+        }),
+        defineField({
+            name: 'technologies',
+            title: 'Technologies',
+            type: 'array',
+            of: [{ type: 'string' }],
+            options: {
+                layout: 'tags',
+            },
+            description: 'Tech stack used (e.g. Next.js, Python, TensorFlow)',
+        }),
+        defineField({
+            name: 'gallery',
+            title: 'Gallery',
+            type: 'array',
+            of: [
+                {
+                    type: 'image',
+                    options: { hotspot: true },
+                },
+            ],
+            description: 'Additional project screenshots',
+        }),
+        defineField({
+            name: 'body',
+            title: 'Body',
+            type: 'array',
+            of: [{ type: 'block' }],
+            description: 'Detailed project writeup (rich text)',
+        }),
+        defineField({
+            name: 'featured',
+            title: 'Featured',
+            type: 'boolean',
+            initialValue: false,
+            description: 'Highlight this project on the listing page',
+        }),
+        defineField({
             name: 'publishedAt',
             title: 'Published at',
             type: 'datetime',

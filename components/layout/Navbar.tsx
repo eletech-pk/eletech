@@ -22,10 +22,12 @@ export function Navbar() {
                 </Link>
 
                 <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-                    <Button className="hidden md:flex rounded-full px-6 h-11 font-medium">
-                        Contact Us
-                        <ArrowRight className="ml-2 h-4 w-4" />
-                    </Button>
+                    <Link href="/contact">
+                        <Button className="hidden md:flex rounded-full px-6 h-11 font-medium">
+                            Contact Us
+                            <ArrowRight className="ml-2 h-4 w-4" />
+                        </Button>
+                    </Link>
                     <button
                         onClick={() => setIsOpen(!isOpen)}
                         className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
@@ -42,22 +44,30 @@ export function Navbar() {
                     )}
                 >
                     <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 rounded-xl border border-white/10 bg-background/90 md:bg-transparent md:border-0 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 backdrop-blur-sm">
-                        {["Home", "Services", "About", "Team", "Contact"].map((item) => (
-                            <li key={item}>
+                        {[
+                            { label: "Home", href: "/" },
+                            { label: "About", href: "/about" },
+                            { label: "Case Studies", href: "/case-studies" },
+                            { label: "Careers", href: "/careers" },
+                            { label: "Contact", href: "/contact" },
+                        ].map((item) => (
+                            <li key={item.label}>
                                 <Link
-                                    href={item === "Home" ? "/" : `/${item.toLowerCase()}`}
+                                    href={item.href}
                                     className="block py-2 px-3 text-sm md:text-base text-foreground/80 rounded-md hover:bg-accent/70 md:hover:bg-transparent md:hover:text-primary md:p-0 transition-colors"
                                 >
-                                    {item}
+                                    {item.label}
                                 </Link>
                             </li>
                         ))}
                         {/* Mobile Button */}
                         <li className="md:hidden mt-4">
-                            <Button className="w-full">
-                                Contact Us
-                                <ArrowRight className="ml-2 h-4 w-4" />
-                            </Button>
+                            <Link href="/contact">
+                                <Button className="w-full">
+                                    Contact Us
+                                    <ArrowRight className="ml-2 h-4 w-4" />
+                                </Button>
+                            </Link>
                         </li>
                     </ul>
                 </div>

@@ -49,6 +49,41 @@ export default defineType({
             of: [{ type: 'block' }]
         }),
         defineField({
+            name: 'tags',
+            title: 'Tags',
+            type: 'array',
+            of: [{ type: 'string' }],
+            options: {
+                layout: 'tags',
+            },
+            description: 'Filterable tags (e.g. AI, Backend, Remote)',
+        }),
+        defineField({
+            name: 'requirements',
+            title: 'Requirements',
+            type: 'array',
+            of: [{ type: 'string' }],
+            description: 'Bullet-point list of job requirements',
+        }),
+        defineField({
+            name: 'responsibilities',
+            title: 'Responsibilities',
+            type: 'array',
+            of: [{ type: 'string' }],
+            description: 'Bullet-point list of job responsibilities',
+        }),
+        defineField({
+            name: 'salary',
+            title: 'Salary Range',
+            type: 'string',
+            description: 'e.g. $80,000 - $120,000 (optional)',
+        }),
+        defineField({
+            name: 'applicationDeadline',
+            title: 'Application Deadline',
+            type: 'datetime',
+        }),
+        defineField({
             name: 'publishedAt',
             title: 'Published at',
             type: 'datetime',
