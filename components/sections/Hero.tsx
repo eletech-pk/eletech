@@ -14,13 +14,13 @@ export function Hero() {
                             <span className="flex h-2 w-2 rounded-full bg-primary mr-2" />
                             Next-Gen Automation
                         </div>
-                        <h1 className="text-5xl lg:text-5xl font-display font-bold leading-tight mb-6">
+                        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold leading-tight mb-6">
                             Transform Your Business with{" "}
                             <span className="text-gradient-purple italic">
                                 AI Solutions
                             </span>
                         </h1>
-                        <p className="text-lg text-muted-foreground mb-8 max-w-lg mx-auto lg:mx-0">
+                        <p className="text-base sm:text-lg text-muted-foreground mb-8 max-w-lg mx-auto lg:mx-0">
                             We help businesses leverage artificial intelligence to drive growth, efficiency, and innovation. Discover the future of operational excellence.
                         </p>
                         <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">

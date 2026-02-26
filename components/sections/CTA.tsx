@@ -14,7 +14,7 @@ export function CTA() {
     }, [])
 
     return (
-        <section className="py-24 bg-background relative" id="contact">
+        <section className="py-24 bg-background relative w-full" id="contact">
             <div className="absolute top-0 left-0 w-full h-full from-transparent to-primary/5 pointer-events-none" />
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">

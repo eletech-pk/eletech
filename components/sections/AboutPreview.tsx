@@ -16,7 +16,7 @@ export function AboutPreview() {
     const words = text.split(" ")
 
     return (
-        <section ref={containerRef} className="py-20 min-h-[50vh] flex items-center">
+        <section ref={containerRef} className="py-20 min-h-[50vh] flex items-center w-full">
             <div className="max-w-4xl mx-auto px-4 text-left">
                 <h2 className="text-sm font-bold uppercase text-center tracking-widest text-primary mb-8">
                     About Eletech Solutions
@@ -32,7 +32,7 @@ export function AboutPreview() {
                         return (
                             <motion.span
                                 key={i}
-                                style={{ 
+                                style={{
                                     opacity: wordProgress,
                                     filter: useTransform(
                                         wordProgress,

@@ -26,7 +26,7 @@ const faqs = [
 
 export function FAQ() {
     return (
-        <section className="py-24 bg-background">
+        <section className="py-24 bg-background w-full">
             <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-16">
                     <SubtleBadge className="mb-4">Common Questions</SubtleBadge>

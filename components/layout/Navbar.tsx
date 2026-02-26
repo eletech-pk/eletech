@@ -49,7 +49,7 @@ export function Navbar() {
                             { label: "About", href: "/about" },
                             { label: "Case Studies", href: "/case-studies" },
                             { label: "Careers", href: "/careers" },
-                            { label: "Contact", href: "/contact" },
+                            // { label: "Contact", href: "/contact" },
                         ].map((item) => (
                             <li key={item.label}>
                                 <Link
