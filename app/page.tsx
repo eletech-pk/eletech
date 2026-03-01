@@ -1,4 +1,5 @@
 import { Hero } from "@/components/sections/Hero"
+import { Hero2 } from "@/components/sections/Hero2"
 import { TrustBadges } from "@/components/sections/TrustBadges"
 import { Services } from "@/components/sections/Services"
 import { AboutPreview } from "@/components/sections/AboutPreview"
@@ -17,7 +18,8 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col w-full overflow-x-hidden">
       <Navbar />
-      <Hero />
+      {/* <Hero /> */}
+      <Hero2 />
       <TrustBadges />
       <Services />
       <Stats />
