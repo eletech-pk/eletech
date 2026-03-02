@@ -27,24 +27,26 @@ const faqs = [
 export function FAQ() {
     return (
         <section className="py-24 bg-background w-full">
-            <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="text-center mb-16">
-                    <SubtleBadge className="mb-4">Common Questions</SubtleBadge>
-                    <h2 className="text-3xl md:text-5xl font-display font-bold mb-4">
-                        Frequently Asked Questions
-                    </h2>
-                </div>
+            <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+                <div className="max-w-3xl mx-auto">
+                    <div className="text-center mb-16">
+                        <SubtleBadge className="mb-4">Common Questions</SubtleBadge>
+                        <h2 className="text-3xl md:text-5xl font-display font-bold mb-4">
+                            Frequently Asked Questions
+                        </h2>
+                    </div>
 
-                <Accordion type="single" collapsible className="w-full">
-                    {faqs.map((faq, index) => (
-                        <AccordionItem key={index} value={`item-${index}`}>
-                            <AccordionTrigger className="text-left text-lg">{faq.question}</AccordionTrigger>
-                            <AccordionContent className="text-base">
-                                {faq.answer}
-                            </AccordionContent>
-                        </AccordionItem>
-                    ))}
-                </Accordion>
+                    <Accordion type="single" collapsible className="w-full">
+                        {faqs.map((faq, index) => (
+                            <AccordionItem key={index} value={`item-${index}`}>
+                                <AccordionTrigger className="text-left text-lg">{faq.question}</AccordionTrigger>
+                                <AccordionContent className="text-base">
+                                    {faq.answer}
+                                </AccordionContent>
+                            </AccordionItem>
+                        ))}
+                    </Accordion>
+                </div>
             </div>
         </section>
     )

@@ -11,7 +11,7 @@ export function Navbar() {
 
     return (
         <nav className="fixed w-full z-50 top-0 start-0 border-b border-white/10 bg-background/75 backdrop-blur-xl">
-            <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between px-4 sm:px-6 lg:px-8 py-4">
+            <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between px-6 sm:px-8 lg:px-12 py-4">
                 <Link href="/" className="flex items-center space-x-2">
                     <div className="w-9 h-9 rounded-lg bg-gradient-to-tr from-primary to-secondary flex items-center justify-center text-white font-bold shadow-lg shadow-primary/25">
                         E

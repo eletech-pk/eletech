@@ -12,6 +12,7 @@ import {
     ChevronRight,
 } from "lucide-react"
 import { useState, useEffect, useCallback } from "react"
+import { cn } from "@/lib/utils"
 
 const features = [
     {
@@ -88,17 +89,17 @@ export function WhyUs() {
     ]
 
     return (
-        <section className="py-20 w-full">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex justify-between items-center mb-12">
+        <section className="py-24 md:py-32 w-full">
+            <div className="max-w-7xl mx-auto px-8 sm:px-12 lg:px-16">
+                <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-16 gap-6">
                     <div>
-                        <h2 className="text-4xl md:text-5xl font-display font-bold mb-8 dark:text-white leading-tight">
+                        <h2 className="text-4xl md:text-5xl font-display font-bold dark:text-white leading-tight">
                             All features
                             <span className="text-primary italic"> in one place</span>
                         </h2>
                     </div>
                     {/* Navigation Buttons */}
-                    <div className="flex gap-4 pt-4">
+                    <div className="flex gap-4">
                         <button
                             onClick={prevSlide}
                             className="p-3 rounded-full border border-white/10 hover:bg-white/5 transition-colors dark:text-white group"
@@ -119,14 +120,14 @@ export function WhyUs() {
                     {/* Left Column - 40% (adjusted for better balance) */}
                     <div className="lg:col-span-2 space-y-8">
                         {/* Abstract Graphic with subtle animations */}
-                        <div className="relative h-64 lg:h-80 flex items-center justify-center">
+                        <div className="relative h-32 md:h-48 lg:h-80 flex items-center justify-center">
                             <motion.div
                                 animate={{
                                     scale: [1, 1.1, 1],
                                     rotate: [0, 5, 0]
                                 }}
                                 transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-                                className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-yellow-500/10 rounded-3xl blur-3xl"
+                                className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-yellow-500/10 rounded-3xl blur-3xl lg:blur-[60px]"
                             />
                             <motion.div
                                 animate={{
@@ -134,7 +135,7 @@ export function WhyUs() {
                                     y: [-10, 10, -10],
                                 }}
                                 transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-                                className="absolute top-1/4 left-1/4 w-32 h-32 bg-gradient-to-tr from-purple-400 to-yellow-400 rounded-full blur-xl opacity-60"
+                                className="absolute top-1/4 left-1/4 w-16 h-16 lg:w-32 lg:h-32 bg-gradient-to-tr from-purple-400 to-yellow-400 rounded-full blur-xl opacity-60"
                             />
                             <motion.div
                                 animate={{
@@ -142,15 +143,15 @@ export function WhyUs() {
                                     y: [10, -10, 10],
                                 }}
                                 transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-                                className="absolute bottom-1/4 right-1/4 w-24 h-24 bg-gradient-to-bl from-yellow-300 to-purple-300 rounded-full blur-lg opacity-40"
+                                className="absolute bottom-1/4 right-1/4 w-12 h-12 lg:w-24 lg:h-24 bg-gradient-to-bl from-yellow-300 to-purple-300 rounded-full blur-lg opacity-40"
                             />
                             <motion.div
                                 animate={{ y: [-5, 5, -5] }}
                                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                                 className="relative z-10"
                             >
-                                <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-yellow-500 rounded-2xl flex items-center justify-center shadow-lg shadow-purple-500/20">
-                                    <div className="w-8 h-8 bg-white/20 rounded-full backdrop-blur-sm"></div>
+                                <div className="w-12 h-12 lg:w-16 lg:h-16 bg-gradient-to-br from-purple-500 to-yellow-500 rounded-2xl flex items-center justify-center shadow-lg shadow-purple-500/20">
+                                    <div className="w-6 h-6 lg:w-8 lg:h-8 bg-white/20 rounded-full backdrop-blur-sm"></div>
                                 </div>
                             </motion.div>
                         </div>
@@ -164,7 +165,7 @@ export function WhyUs() {
                         onMouseEnter={() => setIsPaused(true)}
                         onMouseLeave={() => setIsPaused(false)}
                     >
-                        <div className="relative h-[600px] overflow-hidden">
+                        <div className="relative overflow-hidden w-full">
                             <AnimatePresence initial={false} mode="wait">
                                 <motion.div
                                     key={currentIndex}
@@ -172,26 +173,27 @@ export function WhyUs() {
                                     animate={{ opacity: 1, x: 0 }}
                                     exit={{ opacity: 0, x: -50 }}
                                     transition={{ duration: 0.8, ease: "easeInOut" }}
-                                    className="flex w-full h-full"
+                                    className="grid grid-cols-2 gap-4 sm:gap-8 w-full"
                                 >
-                                    {slides[currentIndex].map((col, colIdx) => (
-                                        <div key={colIdx} className="w-1/2 px-4 space-y-8 h-full flex flex-col justify-center">
-                                            {col.map((feature, featureIdx) => (
-                                                <div
-                                                    key={featureIdx}
-                                                    className="text-center p-8 min-h-[250px] flex flex-col items-center justify-center"
-                                                >
-                                                    <div className="flex justify-center mb-6">
-                                                        <feature.icon className="text-primary w-12 h-12" />
-                                                    </div>
-                                                    <h4 className="text-xl font-bold mb-4 dark:text-white">
-                                                        {feature.title}
-                                                    </h4>
-                                                    <p className="text-gray-400 leading-relaxed text-sm">
-                                                        {feature.description}
-                                                    </p>
-                                                </div>
-                                            ))}
+                                    {/* Map all 4 features in the current slide. Hide the 3rd and 4th on mobile. */}
+                                    {slides[currentIndex].flat().map((feature, idx) => (
+                                        <div
+                                            key={idx}
+                                            className={cn(
+                                                "text-center p-4 sm:p-8 flex flex-col items-center justify-start border border-white/5 bg-white/5 rounded-2xl",
+                                                // On small screens, hide index 2 & 3 (the bottom row)
+                                                idx > 1 ? "hidden md:flex" : "flex"
+                                            )}
+                                        >
+                                            <div className="flex justify-center mb-4 sm:mb-6">
+                                                <feature.icon className="text-primary w-10 h-10 sm:w-12 sm:h-12" />
+                                            </div>
+                                            <h4 className="text-lg sm:text-xl font-bold mb-3 dark:text-white">
+                                                {feature.title}
+                                            </h4>
+                                            <p className="text-gray-400 leading-relaxed text-xs sm:text-sm">
+                                                {feature.description}
+                                            </p>
                                         </div>
                                     ))}
                                 </motion.div>

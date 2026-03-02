@@ -44,8 +44,8 @@ const team = [
 
 export function TeamPreview() {
     return (
-        <section className="py-24 w-full">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="py-24 w-full overflow-hidden">
+            <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
                 <div className="text-center mb-16">
                     <h2 className="text-4xl md:text-5xl font-display font-bold text-white mb-4">
                         Meet The Team Members
@@ -53,7 +53,7 @@ export function TeamPreview() {
                     <div className="w-20 h-1 bg-primary mx-auto rounded-full"></div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10 mx-auto max-w-[280px] sm:max-w-none">
                     {team.map((member, index) => (
                         <motion.div
                             key={member.name}
@@ -61,7 +61,7 @@ export function TeamPreview() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.5, delay: index * 0.1 }}
-                            className="group relative h-[450px] w-full overflow-hidden rounded-2xl bg-zinc-900 border border-white/5"
+                            className="group relative h-[320px] md:h-[400px] lg:h-[450px] w-full overflow-hidden rounded-2xl bg-zinc-900 border border-white/5"
                         >
                             {/* Member Image */}
                             <img

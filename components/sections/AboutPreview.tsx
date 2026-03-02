@@ -16,8 +16,8 @@ export function AboutPreview() {
     const words = text.split(" ")
 
     return (
-        <section ref={containerRef} className="py-20 min-h-[50vh] flex items-center w-full">
-            <div className="max-w-4xl mx-auto px-4 text-left">
+        <section ref={containerRef} className="py-20 min-h-[50vh] flex items-center w-full overflow-hidden">
+            <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 w-full text-center md:text-left">
                 <h2 className="text-sm font-bold uppercase text-center tracking-widest text-primary mb-8">
                     About Eletech Solutions
                 </h2>

@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 export function Footer() {
     return (
         <footer className="w-full pt-24 pb-8 border-t border-white/5 bg-black text-white">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-16">
+            <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 text-center mb-16">
                 <h2 className="text-4xl font-display font-bold mb-6">
                     Eletech - Simplify. Automate. Accelerate.
                 </h2>
@@ -13,16 +13,20 @@ export function Footer() {
                     Join forward-thinking companies streamlining their future with us.
                 </p>
                 <div className="flex justify-center gap-4 flex-wrap">
-                    <Button variant="secondary" size="lg" className="rounded-full font-bold text-black bg-white hover:bg-gray-200">
-                        Get Started
-                    </Button>
-                    <Button variant="outline" size="lg" className="rounded-full border-gray-700 text-white hover:bg-white/10">
-                        Contact Sales
-                    </Button>
+                    <Link href="#contact">
+                        <Button variant="secondary" size="lg" className="rounded-full font-bold text-black bg-white hover:bg-gray-200">
+                            Get Started
+                        </Button>
+                    </Link>
+                    <Link href="#contact">
+                        <Button variant="outline" size="lg" className="rounded-full border-gray-700 text-white hover:bg-white/10">
+                            Contact Sales
+                        </Button>
+                    </Link>
                 </div>
             </div>
 
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-6">
                 <div className="flex items-center space-x-2">
                     <div className="w-6 h-6 rounded bg-gradient-to-tr from-primary to-secondary flex items-center justify-center text-white text-xs font-bold">
                         E

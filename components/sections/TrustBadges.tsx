@@ -13,7 +13,7 @@ const brands = [
 export function TrustBadges() {
     return (
         <section className="py-16 border-y border-white/5 bg-black/30 w-full">
-            <div className="max-w-7xl mx-auto px-4 overflow-hidden">
+            <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 overflow-hidden">
                 <p className="text-center text-sm text-gray-400 mb-8 tracking-normal">
                     Trusted by innovative companies worldwide
                 </p>

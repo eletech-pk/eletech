@@ -3,7 +3,7 @@
 export function Integrations() {
     return (
         <section className="py-24 overflow-hidden relative w-full">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 text-center">
+            <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mb-12 text-center">
                 <h2 className="text-3xl font-display font-bold mb-4 dark:text-white">
                     Effortless Connections
                 </h2>

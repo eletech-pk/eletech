@@ -24,8 +24,8 @@ export function Hero2() {
                 id="canvas"
             ></canvas>
 
-            <div className="relative z-10 animate-in fade-in slide-in-from-bottom-4 duration-1000 mt-10 flex flex-col items-center justify-center px-4 text-center">
-                <div className="mb-6 mt-10 sm:justify-center md:mb-4 md:mt-10">
+            <div className="relative z-10 animate-in fade-in slide-in-from-bottom-4 duration-1000 mt-10 flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 text-center">
+                <div className="mb-6 mt-10 sm:justify-center md:mb-4 md:mt-10 max-w-[90vw] md:max-w-none">
                     <div className="relative flex items-center whitespace-nowrap rounded-full border border-white/10 bg-black/40 backdrop-blur-md px-3 py-1 text-xs leading-6 text-primary/80 shadow-xl">
                         <Shapes className="h-5 p-1" /> Next-Gen Automation
                         <Link
@@ -80,7 +80,7 @@ export function Hero2() {
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary font-bold">Operational Excellence</span>
                     </h2>
 
-                    <p className="mx-auto mb-16 mt-4 max-w-2xl px-6 text-base text-gray-400 sm:px-6 md:max-w-3xl md:px-20 lg:text-lg">
+                    <p className="mx-auto mb-16 mt-4 max-w-sm px-4 sm:max-w-2xl sm:px-6 md:max-w-3xl md:px-20 text-base text-gray-400 lg:text-lg text-balance">
                         We help businesses leverage artificial intelligence to drive growth, efficiency, and innovation. Discover the future of operational excellence.
                     </p>
                     <div className="flex justify-center gap-4 flex-wrap">
