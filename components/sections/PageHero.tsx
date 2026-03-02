@@ -17,7 +17,7 @@ export function PageHero({ badge, title, subtitle, badgeIcon }: PageHeroProps) {
             <div className="absolute top-0 right-1/4 w-[500px] h-[500px] rounded-full bg-primary/15 blur-[120px] pointer-events-none" />
             <div className="absolute bottom-0 left-1/4 w-[400px] h-[400px] rounded-full bg-secondary/10 blur-[100px] pointer-events-none" />
 
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-24 relative z-10 text-center">
                 {badge && (
                     <SubtleBadge icon={badgeIcon} className="mb-6">
                         {badge}

@@ -59,16 +59,16 @@ export default function AboutPage() {
             {/* Mission Section */}
             <section className="py-24 relative overflow-hidden">
                 <div className="absolute top-1/2 left-0 w-[400px] h-[400px] rounded-full bg-primary/10 blur-[120px] -translate-y-1/2 pointer-events-none" />
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-24 relative z-10">
                     <div className="grid lg:grid-cols-2 gap-16 items-center">
                         {/* Icon */}
-                        <div className="flex justify-center">
-                            <div className="relative w-64 h-64">
+                        <div className="hidden lg:flex justify-center">
+                            <div className="relative w-32 h-32 lg:w-64 lg:h-64">
                                 <div className="absolute inset-0 rounded-3xl border border-white/10 bg-gradient-to-br from-primary/20 to-transparent backdrop-blur-sm" />
                                 <div className="absolute inset-0 flex items-center justify-center">
-                                    <Target className="w-24 h-24 text-primary" />
+                                    <Target className="w-12 h-12 lg:w-24 lg:h-24 text-primary" />
                                 </div>
-                                <div className="absolute -inset-4 rounded-3xl border border-white/5 animate-pulse" />
+                                <div className="absolute -inset-2 lg:-inset-4 rounded-3xl border border-white/5 animate-pulse" />
                             </div>
                         </div>
 
@@ -97,7 +97,7 @@ export default function AboutPage() {
             {/* Vision Section */}
             <section className="py-24 relative overflow-hidden">
                 <div className="absolute top-1/2 right-0 w-[400px] h-[400px] rounded-full bg-secondary/10 blur-[120px] -translate-y-1/2 pointer-events-none" />
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-24 relative z-10">
                     <div className="grid lg:grid-cols-2 gap-16 items-center">
                         {/* Text (reversed order) */}
                         <div className="order-2 lg:order-1">
@@ -119,13 +119,13 @@ export default function AboutPage() {
                         </div>
 
                         {/* Icon */}
-                        <div className="flex justify-center order-1 lg:order-2">
-                            <div className="relative w-64 h-64">
+                        <div className="hidden lg:flex justify-center order-1 lg:order-2">
+                            <div className="relative w-32 h-32 lg:w-64 lg:h-64">
                                 <div className="absolute inset-0 rounded-3xl border border-white/10 bg-gradient-to-br from-secondary/20 to-transparent backdrop-blur-sm" />
                                 <div className="absolute inset-0 flex items-center justify-center">
-                                    <Eye className="w-24 h-24 text-secondary" />
+                                    <Eye className="w-12 h-12 lg:w-24 lg:h-24 text-secondary" />
                                 </div>
-                                <div className="absolute -inset-4 rounded-3xl border border-white/5 animate-pulse" />
+                                <div className="absolute -inset-2 lg:-inset-4 rounded-3xl border border-white/5 animate-pulse" />
                             </div>
                         </div>
                     </div>
@@ -137,7 +137,7 @@ export default function AboutPage() {
 
             {/* Values Grid */}
             <section className="py-24">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-24">
                     <div className="text-center mb-16">
                         <h2 className="text-sm font-bold uppercase tracking-widest text-primary mb-4">
                             Our Core Values
@@ -153,10 +153,12 @@ export default function AboutPage() {
                                 key={value.title}
                                 className="p-6 rounded-2xl border border-white/5 bg-[#0A0A0A] hover:border-white/15 transition-all duration-300 group"
                             >
-                                <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-                                    <value.icon className="w-6 h-6 text-primary" />
+                                <div className="flex items-center gap-4 mb-4 lg:mb-4 lg:block">
+                                    <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center lg:mb-4 group-hover:bg-primary/20 transition-colors flex-shrink-0">
+                                        <value.icon className="w-6 h-6 text-primary" />
+                                    </div>
+                                    <h4 className="text-lg font-bold lg:mb-2">{value.title}</h4>
                                 </div>
-                                <h4 className="text-lg font-bold mb-2">{value.title}</h4>
                                 <p className="text-sm text-muted-foreground leading-relaxed">
                                     {value.description}
                                 </p>
@@ -171,7 +173,7 @@ export default function AboutPage() {
 
             {/* Join Us CTA */}
             <section className="py-24">
-                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <div className="max-w-4xl mx-auto px-6 sm:px-8 lg:px-24 text-center">
                     <h2 className="text-3xl md:text-5xl font-display font-bold mb-6">
                         Want to Join Our Team?
                     </h2>
