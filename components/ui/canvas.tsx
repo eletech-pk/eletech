@@ -153,15 +153,20 @@ export const renderCanvas = function () {
                 }
             }
             ctx.frame++;
-            window.requestAnimationFrame(render);
+            if (ctx.running) {
+                window.requestAnimationFrame(render);
+            }
         }
     }
 
+    let canvas = document.getElementById("canvas");
     function resizeCanvas() {
-        const canvas = document.getElementById("canvas");
-        if (canvas) {
-            ctx.canvas.width = canvas.parentElement.clientWidth || window.innerWidth;
-            ctx.canvas.height = canvas.parentElement.clientHeight || window.innerHeight;
+        if (canvas && canvas.parentElement) {
+            ctx.canvas.width = canvas.parentElement.clientWidth;
+            ctx.canvas.height = canvas.parentElement.clientHeight;
+        } else {
+            ctx.canvas.width = window.innerWidth;
+            ctx.canvas.height = window.innerHeight;
         }
     }
 
@@ -176,7 +181,7 @@ export const renderCanvas = function () {
         }
     });
     window.addEventListener("blur", () => {
-        ctx.running = true;
+        ctx.running = false;
     });
 
     resizeCanvas();

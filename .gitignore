@@ -13,6 +13,8 @@
 # testing
 /coverage
 /.agent
+desktop.json
+mobile.json
 
 # next.js
 /.next/

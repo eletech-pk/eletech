@@ -1,6 +1,6 @@
 "use client"
 
-import { motion, AnimatePresence } from "framer-motion"
+import { m, AnimatePresence } from "framer-motion"
 import {
     Cpu,
     Code2,
@@ -13,6 +13,20 @@ import {
 } from "lucide-react"
 import { useState, useEffect, useCallback } from "react"
 import { cn } from "@/lib/utils"
+
+function AnimatedNumber({ min, max, suffix = "", speed = 2000 }: { min: number, max: number, suffix?: string, speed?: number }) {
+    const [value, setValue] = useState(max)
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            // Fluctuate randomly between min and max
+            setValue(Math.floor(Math.random() * (max - min + 1) + min))
+        }, speed)
+        return () => clearInterval(interval)
+    }, [min, max, speed])
+
+    return <>{value}{suffix}</>
+}
 
 const features = [
     {
@@ -117,45 +131,116 @@ export function WhyUs() {
                     </div>
                 </div>
                 <div className="grid lg:grid-cols-5 gap-12 items-center">
-                    {/* Left Column - 40% (adjusted for better balance) */}
-                    <div className="lg:col-span-2 space-y-8">
-                        {/* Abstract Graphic with subtle animations */}
-                        <div className="relative h-32 md:h-48 lg:h-80 flex items-center justify-center">
-                            <motion.div
-                                animate={{
-                                    scale: [1, 1.1, 1],
-                                    rotate: [0, 5, 0]
-                                }}
-                                transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-                                className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-yellow-500/10 rounded-3xl blur-3xl lg:blur-[60px]"
-                            />
-                            <motion.div
-                                animate={{
-                                    x: [-10, 10, -10],
-                                    y: [-10, 10, -10],
-                                }}
-                                transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-                                className="absolute top-1/4 left-1/4 w-16 h-16 lg:w-32 lg:h-32 bg-gradient-to-tr from-purple-400 to-yellow-400 rounded-full blur-xl opacity-60"
-                            />
-                            <motion.div
-                                animate={{
-                                    x: [10, -10, 10],
-                                    y: [10, -10, 10],
-                                }}
-                                transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-                                className="absolute bottom-1/4 right-1/4 w-12 h-12 lg:w-24 lg:h-24 bg-gradient-to-bl from-yellow-300 to-purple-300 rounded-full blur-lg opacity-40"
-                            />
-                            <motion.div
-                                animate={{ y: [-5, 5, -5] }}
-                                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                                className="relative z-10"
-                            >
-                                <div className="w-12 h-12 lg:w-16 lg:h-16 bg-gradient-to-br from-purple-500 to-yellow-500 rounded-2xl flex items-center justify-center shadow-lg shadow-purple-500/20">
-                                    <div className="w-6 h-6 lg:w-8 lg:h-8 bg-white/20 rounded-full backdrop-blur-sm"></div>
-                                </div>
-                            </motion.div>
-                        </div>
+                    {/* Left Column - Neural Engine Dashboard Graphic */}
+                    <div className="lg:col-span-2 relative h-[400px] md:h-[500px] flex items-center justify-center -ml-4 lg:-ml-12 perspective-1000">
+                        {/* Background subtle glow */}
+                        <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 via-transparent to-primary/5 rounded-full blur-[100px] animate-pulse" />
 
+                        {/* Connection Lines (SVG) */}
+                        <svg className="absolute inset-0 w-full h-full z-0 opacity-40 pointer-events-none" viewBox="0 0 400 500" preserveAspectRatio="none">
+                            <m.path
+                                d="M 200,250 L 100,150 M 200,250 L 320,180 M 200,250 L 120,380 M 200,250 L 280,360"
+                                stroke="currentColor"
+                                className="text-primary"
+                                strokeWidth="2"
+                                strokeDasharray="5 5"
+                                initial={{ strokeDashoffset: 100 }}
+                                animate={{ strokeDashoffset: 0 }}
+                                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                            />
+                            {/* Animated data packets traveling along lines */}
+                            <m.circle r="3" fill="#fff" className="drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]">
+                                <animateMotion dur="3s" repeatCount="indefinite" path="M 200,250 L 100,150" />
+                            </m.circle>
+                            <m.circle r="3" fill="#fff" className="drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]">
+                                <animateMotion dur="2.5s" repeatCount="indefinite" path="M 200,250 L 320,180" />
+                            </m.circle>
+                            <m.circle r="3" fill="#fff" className="drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]">
+                                <animateMotion dur="4s" repeatCount="indefinite" path="M 120,380 L 200,250" />
+                            </m.circle>
+                        </svg>
+
+                        {/* Central Core */}
+                        <m.div
+                            animate={{
+                                y: [-10, 10, -10],
+                                rotate: [0, 5, -5, 0]
+                            }}
+                            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+                            className="relative z-10 w-24 h-24 md:w-32 md:h-32 glass-card rounded-3xl border border-primary/30 flex items-center justify-center shadow-[0_0_40px_-10px_rgba(var(--primary-rgb),0.5)]"
+                        >
+                            <div className="absolute inset-0 bg-primary/20 rounded-3xl animate-ping opacity-20" />
+                            <Cpu className="w-10 h-10 md:w-14 md:h-14 text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]" />
+                        </m.div>
+
+                        {/* Floating Data Card 1 : Processing */}
+                        <m.div
+                            animate={{ y: [-5, 5, -5], x: [-5, 5, -5] }}
+                            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                            className="absolute top-[20%] left-[5%] md:left-[10%] z-20 w-40 glass-card p-3 rounded-xl border border-white/10 shadow-2xl backdrop-blur-md"
+                        >
+                            <div className="flex items-center gap-2 mb-2">
+                                <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                                <span className="text-xs text-gray-400 font-mono tracking-wider uppercase">System Ops</span>
+                            </div>
+                            <div className="font-mono text-xl font-bold text-white mb-1">
+                                <AnimatedNumber min={92} max={99} suffix="%" />
+                            </div>
+                            <div className="w-full bg-zinc-800 rounded-full h-1.5 overflow-hidden">
+                                <m.div
+                                    className="bg-primary h-full rounded-full"
+                                    animate={{ width: ["90%", "98%", "95%", "99%"] }}
+                                    transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+                                />
+                            </div>
+                        </m.div>
+
+                        {/* Floating Data Card 2 : AI Model */}
+                        <m.div
+                            animate={{ y: [5, -5, 5] }}
+                            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+                            className="absolute top-[25%] right-[0%] md:right-[5%] z-20 w-44 glass-card p-4 rounded-xl border border-primary/20 shadow-xl shadow-primary/5 backdrop-blur-md"
+                        >
+                            <div className="flex items-center gap-2 mb-2">
+                                <Code2 className="w-4 h-4 text-primary" />
+                                <span className="text-xs text-primary/80 font-mono tracking-wider uppercase">Model Gen</span>
+                            </div>
+                            <div className="font-mono text-lg font-bold text-white">
+                                <AnimatedNumber min={1024} max={4096} suffix=" tokens" speed={100} />
+                            </div>
+                            <p className="text-[10px] text-gray-500 mt-1 uppercase tracking-widest">/ sec</p>
+                        </m.div>
+
+                        {/* Floating Data Card 3 : Latency */}
+                        <m.div
+                            animate={{ y: [-8, 8, -8], x: [5, -5, 5] }}
+                            transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+                            className="absolute bottom-[20%] left-[15%] md:left-[20%] z-20 glass-card px-4 py-3 rounded-xl border border-white/10 shadow-xl backdrop-blur-md flex items-center gap-4"
+                        >
+                            <Server className="w-5 h-5 text-gray-400" />
+                            <div>
+                                <div className="text-[10px] text-gray-500 font-mono tracking-wider uppercase mb-0.5">Latency</div>
+                                <div className="font-mono text-sm font-bold text-green-400 flex items-baseline gap-1">
+                                    <AnimatedNumber min={8} max={24} speed={500} />
+                                    <span className="text-xs text-gray-400 font-normal">ms</span>
+                                </div>
+                            </div>
+                        </m.div>
+
+                        {/* Floating Code Snippet */}
+                        <m.div
+                            animate={{ y: [8, -8, 8] }}
+                            transition={{ duration: 6.5, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+                            className="absolute bottom-[25%] right-[5%] z-10 glass-card p-3 rounded-lg border border-white/5 opacity-60 backdrop-blur-sm"
+                        >
+                            <pre className="text-[10px] font-mono text-gray-400 leading-tight">
+                                <span className="text-pink-500">const</span> optimize = <span className="text-yellow-300">await</span> ai.run({`{`}<br />
+                                &nbsp;&nbsp;model: <span className="text-green-300">'eletech-v2'</span>,<br />
+                                &nbsp;&nbsp;data: stream<br />
+                                {`}`})<br />
+                                <span className="text-blue-400">return</span> optimized;
+                            </pre>
+                        </m.div>
 
                     </div>
 
@@ -167,7 +252,7 @@ export function WhyUs() {
                     >
                         <div className="relative overflow-hidden w-full">
                             <AnimatePresence initial={false} mode="wait">
-                                <motion.div
+                                <m.div
                                     key={currentIndex}
                                     initial={{ opacity: 0, x: 50 }}
                                     animate={{ opacity: 1, x: 0 }}
@@ -180,7 +265,7 @@ export function WhyUs() {
                                         <div
                                             key={idx}
                                             className={cn(
-                                                "text-center p-4 sm:p-8 flex flex-col items-center justify-start border border-white/5 bg-white/5 rounded-2xl",
+                                                "text-center p-4 sm:p-8 flex flex-col items-center justify-start rounded-2xl bg-transparent",
                                                 // On small screens, hide index 2 & 3 (the bottom row)
                                                 idx > 1 ? "hidden md:flex" : "flex"
                                             )}
@@ -196,7 +281,7 @@ export function WhyUs() {
                                             </p>
                                         </div>
                                     ))}
-                                </motion.div>
+                                </m.div>
                             </AnimatePresence>
                         </div>
                     </div>

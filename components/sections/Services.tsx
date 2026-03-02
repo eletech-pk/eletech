@@ -1,8 +1,8 @@
 "use client"
 
 import Link from "next/link"
-import { useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { useState, useEffect } from "react"
+import { m, AnimatePresence } from "framer-motion"
 import {
     Bot,
     Code2,
@@ -63,6 +63,7 @@ const services = [
 
 export function Services() {
     const [currentIndex, setCurrentIndex] = useState(0)
+    const [isHovered, setIsHovered] = useState(false)
 
     const nextSlide = () => {
         setCurrentIndex((prev) => (prev + 1) % (services.length - 1))
@@ -74,13 +75,28 @@ export function Services() {
         )
     }
 
+    useEffect(() => {
+        if (isHovered) return;
+
+        const interval = setInterval(() => {
+            nextSlide();
+        }, 3000);
+
+        return () => clearInterval(interval);
+    }, [isHovered, currentIndex]);
+
     const visibleServices = [
         services[currentIndex],
         services[(currentIndex + 1) % services.length],
     ]
 
     return (
-        <section id="services" className="py-24 bg-black w-full overflow-hidden">
+        <section
+            id="services"
+            className="py-24 bg-black w-full overflow-hidden"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+        >
             <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
                 <div className="grid lg:grid-cols-12 gap-12 items-center">
                     {/* Left Column: Text Content */}
@@ -122,7 +138,7 @@ export function Services() {
                         <div className="grid md:grid-cols-2 gap-6 items-start">
                             <AnimatePresence mode="popLayout">
                                 {visibleServices.map((service, idx) => (
-                                    <motion.div
+                                    <m.div
                                         key={`${service.title}-${currentIndex}-${idx}`}
                                         initial={{ opacity: 0, x: 50 }}
                                         animate={{ opacity: 1, x: 0 }}
@@ -144,7 +160,7 @@ export function Services() {
                                                 Get started
                                             </Button>
                                         </Link>
-                                    </motion.div>
+                                    </m.div>
                                 ))}
                             </AnimatePresence>
                         </div>

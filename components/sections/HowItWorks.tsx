@@ -1,6 +1,6 @@
 "use client"
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { m } from "framer-motion";
 import { useRef } from "react";
 import { Command, PhoneCall, Code, Rocket } from "lucide-react";
 import { SubtleBadge } from "@/components/ui/subtle-badge";
@@ -46,19 +46,14 @@ interface StepCardProps {
 const StepCard = ({ step, index, isLast }: StepCardProps) => {
     const cardRef = useRef<HTMLDivElement>(null);
 
-    const { scrollYProgress } = useScroll({
-        target: cardRef,
-        offset: ["start end", "end center"]
-    });
-
-    const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+    const lineHeight = "0%";
 
     // Number badge fills when line reaches it (previous step completes)
     const isFirstStep = index === 0;
-    const numberBgProgress = useTransform(scrollYProgress, [0, 0.3], [0, 1]);
+    const numberBgProgress = 0;
 
     return (
-        <motion.div
+        <m.div
             ref={cardRef}
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -70,7 +65,7 @@ const StepCard = ({ step, index, isLast }: StepCardProps) => {
             <div className="hidden lg:flex items-start gap-8 flex-shrink-0">
                 <div className="flex flex-col items-center">
                     {/* Number Badge */}
-                    <motion.div
+                    <m.div
                         className="w-12 h-12 p-2 rounded-lg inline-flex flex-col justify-center items-center relative overflow-hidden border border-white/10"
                         style={{
                             background: isFirstStep
@@ -80,7 +75,7 @@ const StepCard = ({ step, index, isLast }: StepCardProps) => {
                     >
                         {/* Fill overlay for non-first steps */}
                         {!isFirstStep && (
-                            <motion.div
+                            <m.div
                                 className="absolute inset-0 rounded-lg"
                                 style={{
                                     background: "linear-gradient(180deg, #FFFFFF 0%, #E2E8F0 100%)",
@@ -88,26 +83,26 @@ const StepCard = ({ step, index, isLast }: StepCardProps) => {
                                 }}
                             />
                         )}
-                        <motion.div
+                        <m.div
                             className="relative z-10 flex items-center justify-center p-2"
                             style={{
-                                color: isFirstStep ? "#000000" : useTransform(numberBgProgress, [0, 1], ["#FFFFFF", "#000000"])
+                                color: isFirstStep ? "#000000" : "#FFFFFF"
                             }}
                         >
                             <span className="text-lg font-bold font-mono">{step.number}</span>
-                        </motion.div>
-                    </motion.div>
+                        </m.div>
+                    </m.div>
 
                     {/* Vertical Line with scroll fill */}
                     {!isLast && (
                         <div className="relative w-[1px] h-32 md:h-64 lg:h-96 mt-4 bg-white/10">
                             {/* Fill line */}
-                            <motion.div
+                            <m.div
                                 className="absolute top-0 left-0 w-full bg-primary"
                                 style={{ height: lineHeight }}
                             />
                             {/* Fade effect at bottom of fill */}
-                            <motion.div
+                            <m.div
                                 className="absolute left-0 w-full h-8 bg-gradient-to-b from-primary to-transparent"
                                 style={{ top: lineHeight }}
                             />
@@ -122,7 +117,7 @@ const StepCard = ({ step, index, isLast }: StepCardProps) => {
                 <div className="flex flex-col gap-3 max-w-md pt-2">
                     <div className="flex items-center gap-4">
                         {/* Number Badge (Mobile & Tablet only) */}
-                        <motion.div
+                        <m.div
                             className="w-10 h-10 lg:hidden p-2 rounded-lg inline-flex flex-col justify-center items-center relative overflow-hidden border border-white/10 flex-shrink-0"
                             style={{
                                 background: isFirstStep
@@ -131,7 +126,7 @@ const StepCard = ({ step, index, isLast }: StepCardProps) => {
                             }}
                         >
                             {!isFirstStep && (
-                                <motion.div
+                                <m.div
                                     className="absolute inset-0 rounded-lg"
                                     style={{
                                         background: "linear-gradient(180deg, #FFFFFF 0%, #E2E8F0 100%)",
@@ -139,15 +134,15 @@ const StepCard = ({ step, index, isLast }: StepCardProps) => {
                                     }}
                                 />
                             )}
-                            <motion.div
+                            <m.div
                                 className="relative z-10 flex items-center justify-center p-2"
                                 style={{
-                                    color: isFirstStep ? "#000000" : useTransform(numberBgProgress, [0, 1], ["#FFFFFF", "#000000"])
+                                    color: isFirstStep ? "#000000" : "#FFFFFF"
                                 }}
                             >
                                 <span className="text-base font-bold font-mono">{step.number}</span>
-                            </motion.div>
-                        </motion.div>
+                            </m.div>
+                        </m.div>
 
                         <h3 className="text-foreground text-2xl lg:text-3xl font-display font-medium leading-8">
                             {step.title}
@@ -166,7 +161,7 @@ const StepCard = ({ step, index, isLast }: StepCardProps) => {
                     />
                 </div>
             </div>
-        </motion.div>
+        </m.div>
     );
 };
 

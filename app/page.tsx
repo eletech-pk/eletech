@@ -1,6 +1,5 @@
+// static imports for above-the-fold or critical components
 import { Hero2 } from "@/components/sections/Hero2"
-import { TrustBadges } from "@/components/sections/TrustBadges"
-import { Services } from "@/components/sections/Services"
 import { Navbar } from "@/components/layout/Navbar"
 import { Footer } from "@/components/layout/Footer"
 import dynamic from 'next/dynamic'
@@ -15,6 +14,8 @@ const Integrations = dynamic(() => import('@/components/sections/Integrations').
 const TeamPreview = dynamic(() => import('@/components/sections/TeamPreview').then(mod => mod.TeamPreview))
 const FAQ = dynamic(() => import('@/components/sections/FAQ').then(mod => mod.FAQ))
 const CTA = dynamic(() => import('@/components/sections/CTA').then(mod => mod.CTA))
+const TrustBadges = dynamic(() => import('@/components/sections/TrustBadges').then(mod => mod.TrustBadges))
+const Services = dynamic(() => import('@/components/sections/Services').then(mod => mod.Services))
 
 export default function Home() {
   return (

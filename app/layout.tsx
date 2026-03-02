@@ -3,16 +3,20 @@ import React from 'react';
 import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import { LazyMotion, domAnimation } from "framer-motion";
 
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
   subsets: ["latin"],
+  display: "optional",
 });
+
 
 export const metadata: Metadata = {
   title: "ELETECH Solutions | AI & Automation Agency",
@@ -26,6 +30,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth dark" suppressHydrationWarning>
+      <head>
+        {/* Preload critical font to prevent layout shift and LCP delay */}
+        <link
+          rel="preload"
+          href="/_next/static/media/36966cca54120369-s.p.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+      </head>
       <body
         className={cn(
           "min-h-screen bg-background font-sans antialiased",
@@ -33,7 +47,9 @@ export default function RootLayout({
           spaceGrotesk.variable
         )}
       >
-        {children}
+        <LazyMotion features={domAnimation}>
+          {children}
+        </LazyMotion>
       </body>
     </html>
   );

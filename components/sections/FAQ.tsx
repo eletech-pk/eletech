@@ -1,5 +1,8 @@
+"use client"
+
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { SubtleBadge } from "@/components/ui/subtle-badge"
+import { m } from "framer-motion"
 
 const faqs = [
     {
@@ -26,26 +29,53 @@ const faqs = [
 
 export function FAQ() {
     return (
-        <section className="py-24 bg-background w-full">
+        <section className="py-24 bg-background w-full overflow-hidden">
             <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
                 <div className="max-w-3xl mx-auto">
-                    <div className="text-center mb-16">
+                    <m.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-100px" }}
+                        transition={{ duration: 0.6 }}
+                        className="text-center mb-16"
+                    >
                         <SubtleBadge className="mb-4">Common Questions</SubtleBadge>
                         <h2 className="text-3xl md:text-5xl font-display font-bold mb-4">
                             Frequently Asked Questions
                         </h2>
-                    </div>
+                    </m.div>
 
-                    <Accordion type="single" collapsible className="w-full">
-                        {faqs.map((faq, index) => (
-                            <AccordionItem key={index} value={`item-${index}`}>
-                                <AccordionTrigger className="text-left text-lg">{faq.question}</AccordionTrigger>
-                                <AccordionContent className="text-base">
-                                    {faq.answer}
-                                </AccordionContent>
-                            </AccordionItem>
-                        ))}
-                    </Accordion>
+                    <m.div
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, margin: "-100px" }}
+                        variants={{
+                            visible: {
+                                transition: {
+                                    staggerChildren: 0.15
+                                }
+                            }
+                        }}
+                    >
+                        <Accordion type="single" collapsible className="w-full">
+                            {faqs.map((faq, index) => (
+                                <m.div
+                                    key={index}
+                                    variants={{
+                                        hidden: { opacity: 0, y: 20 },
+                                        visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+                                    }}
+                                >
+                                    <AccordionItem value={`item-${index}`}>
+                                        <AccordionTrigger className="text-left text-lg">{faq.question}</AccordionTrigger>
+                                        <AccordionContent className="text-base">
+                                            {faq.answer}
+                                        </AccordionContent>
+                                    </AccordionItem>
+                                </m.div>
+                            ))}
+                        </Accordion>
+                    </m.div>
                 </div>
             </div>
         </section>
