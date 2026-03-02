@@ -10,17 +10,19 @@ export function Hero2() {
     const containerRef = useRef<HTMLElement>(null);
 
     useEffect(() => {
-        // Only initialize canvas if it exists and we haven't already
-        const canvasEl = document.getElementById("canvas");
-        if (canvasEl) {
-            renderCanvas();
+        // Only initialize canvas on desktop devices to preserve mobile CPU performance
+        if (window.innerWidth >= 768) {
+            const canvasEl = document.getElementById("canvas");
+            if (canvasEl) {
+                renderCanvas();
+            }
         }
     }, []);
 
     return (
         <section id="hero2" className="relative w-full overflow-hidden py-24 bg-background" ref={containerRef}>
             <canvas
-                className="pointer-events-none absolute inset-0 mx-auto w-full h-full z-0 opacity-40 mix-blend-screen"
+                className="hidden md:block pointer-events-none absolute inset-0 mx-auto w-full h-full z-0 opacity-40 mix-blend-screen"
                 id="canvas"
             ></canvas>
 
@@ -84,16 +86,16 @@ export function Hero2() {
                         We help businesses leverage artificial intelligence to drive growth, efficiency, and innovation. Discover the future of operational excellence.
                     </p>
                     <div className="flex justify-center gap-4 flex-wrap">
-                        <Link href="#contact">
-                            <Button variant="default" size="lg" className="rounded-full shadow-lg shadow-primary/20">
+                        <Button asChild variant="default" size="lg" className="rounded-full shadow-lg shadow-primary/20">
+                            <Link href="#contact">
                                 Start Transformation
-                            </Button>
-                        </Link>
-                        <Link href="#services">
-                            <Button variant="outline" size="lg" className="rounded-full bg-white/5 border-white/10 hover:bg-white/10">
+                            </Link>
+                        </Button>
+                        <Button asChild variant="outline" size="lg" className="rounded-full bg-white/5 border-white/10 hover:bg-white/10">
+                            <Link href="#services">
                                 Our Services
-                            </Button>
-                        </Link>
+                            </Link>
+                        </Button>
                     </div>
                 </div>
             </div>

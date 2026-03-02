@@ -13,16 +13,16 @@ export function Footer() {
                     Join forward-thinking companies streamlining their future with us.
                 </p>
                 <div className="flex justify-center gap-4 flex-wrap">
-                    <Link href="#contact">
-                        <Button variant="secondary" size="lg" className="rounded-full font-bold text-black bg-white hover:bg-gray-200">
+                    <Button asChild variant="secondary" size="lg" className="rounded-full font-bold text-black bg-white hover:bg-gray-200">
+                        <Link href="#contact">
                             Get Started
-                        </Button>
-                    </Link>
-                    <Link href="#contact">
-                        <Button variant="outline" size="lg" className="rounded-full border-gray-700 text-white hover:bg-white/10">
+                        </Link>
+                    </Button>
+                    <Button asChild variant="outline" size="lg" className="rounded-full border-gray-700 text-white hover:bg-white/10">
+                        <Link href="#contact">
                             Contact Sales
-                        </Button>
-                    </Link>
+                        </Link>
+                    </Button>
                 </div>
             </div>
 

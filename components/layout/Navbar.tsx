@@ -22,12 +22,12 @@ export function Navbar() {
                 </Link>
 
                 <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-                    <Link href="/contact">
-                        <Button className="hidden md:flex rounded-full px-6 h-11 font-medium">
+                    <Button asChild className="hidden md:flex rounded-full px-6 h-11 font-medium">
+                        <Link href="/contact">
                             Contact Us
                             <ArrowRight className="ml-2 h-4 w-4" />
-                        </Button>
-                    </Link>
+                        </Link>
+                    </Button>
                     <button
                         onClick={() => setIsOpen(!isOpen)}
                         className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-400 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
@@ -62,12 +62,12 @@ export function Navbar() {
                         ))}
                         {/* Mobile Button */}
                         <li className="md:hidden mt-4">
-                            <Link href="/contact">
-                                <Button className="w-full">
+                            <Button asChild className="w-full">
+                                <Link href="/contact">
                                     Contact Us
                                     <ArrowRight className="ml-2 h-4 w-4" />
-                                </Button>
-                            </Link>
+                                </Link>
+                            </Button>
                         </li>
                     </ul>
                 </div>
