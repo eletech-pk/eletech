@@ -1,20 +1,42 @@
 "use client"
 
-import { useEffect } from "react"
+import { useEffect, useState, useRef } from "react"
 import Cal, { getCalApi } from "@calcom/embed-react"
 import { BlurInHeading } from "@/components/ui/blur-in-heading"
 import { SubtleBadge } from "@/components/ui/subtle-badge"
 
 export function CTA() {
+    const [isVisible, setIsVisible] = useState(false);
+    const containerRef = useRef<HTMLElement>(null);
+
     useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setIsVisible(true);
+                    observer.disconnect();
+                }
+            },
+            { rootMargin: "200px" } // Load slightly before it comes into view
+        );
+        
+        if (containerRef.current) {
+            observer.observe(containerRef.current);
+        }
+
+        return () => observer.disconnect();
+    }, []);
+
+    useEffect(() => {
+        if (!isVisible) return;
         (async function () {
             const cal = await getCalApi({ "namespace": "30min" });
             cal("ui", { "hideEventTypeDetails": false, "layout": "month_view" });
         })();
-    }, [])
+    }, [isVisible])
 
     return (
-        <section className="py-24 bg-background relative w-full" id="contact">
+        <section ref={containerRef} className="py-24 bg-background relative w-full" id="contact">
             <div className="absolute top-0 left-0 w-full h-full from-transparent to-primary/5 pointer-events-none" />
 
             <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
@@ -28,13 +50,20 @@ export function CTA() {
                     </p>
                 </div>
 
-                <div className="w-full max-w-4xl mx-auto bg-card rounded-2xl border border-border overflow-hidden shadow-2xl glass-card">
-                    <Cal
-                        namespace="30min"
-                        calLink="reh1t/30min"
-                        style={{ width: "100%", height: "100%", overflow: "scroll" }}
-                        config={{ "layout": "month_view", "useSlotsViewOnSmallScreen": "true" }}
-                    />
+                <div className="w-full max-w-4xl mx-auto bg-card rounded-2xl border border-border overflow-hidden shadow-2xl glass-card min-h-[600px] flex flex-col justify-center">
+                    {!isVisible ? (
+                        <div className="flex flex-col items-center justify-center text-muted-foreground w-full h-full py-20">
+                            <div className="w-8 h-8 rounded-full border-2 border-primary border-t-transparent animate-spin mb-4" />
+                            <p>Loading Calendar...</p>
+                        </div>
+                    ) : (
+                        <Cal
+                            namespace="30min"
+                            calLink="reh1t/30min"
+                            style={{ width: "100%", height: "100%", minHeight: "600px", overflow: "scroll" }}
+                            config={{ "layout": "month_view", "useSlotsViewOnSmallScreen": "true" }}
+                        />
+                    )}
                 </div>
             </div>
         </section>

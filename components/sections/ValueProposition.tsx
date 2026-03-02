@@ -27,7 +27,7 @@ export function ValueProposition() {
                         <h3 className="text-3xl md:text-4xl font-display font-bold mb-6 dark:text-white">
                             Expert Team
                         </h3>
-                        <p className="text-lg text-gray-500 dark:text-gray-400 mb-8">
+                        <p className="text-lg text-gray-400 dark:text-gray-400 mb-8">
                             Our team consists of industry veterans and technical wizards
                             dedicated to solving your most complex challenges.
                         </p>
@@ -39,7 +39,7 @@ export function ValueProposition() {
                                         Skilled Engineers
                                     </span>
                                 </div>
-                                <p className="text-xs text-gray-500">
+                                <p className="text-xs text-gray-400">
                                     Top-tier talent in AI and dev.
                                 </p>
                             </div>
@@ -50,7 +50,7 @@ export function ValueProposition() {
                                         Domain Experts
                                     </span>
                                 </div>
-                                <p className="text-xs text-gray-500">
+                                <p className="text-xs text-gray-400">
                                     Deep understanding of varied industries.
                                 </p>
                             </div>
@@ -64,7 +64,7 @@ export function ValueProposition() {
                         <h3 className="text-3xl md:text-4xl font-display font-bold mb-6 dark:text-white">
                             Proven Results
                         </h3>
-                        <p className="text-lg text-gray-500 dark:text-gray-400 mb-8">
+                        <p className="text-lg text-gray-400 dark:text-gray-400 mb-8">
                             We don't just promise; we deliver measurable improvements in
                             efficiency, cost reduction, and revenue growth.
                         </p>
@@ -74,7 +74,7 @@ export function ValueProposition() {
                                     <TrendingUp className="text-secondary w-5 h-5" />
                                     <span className="font-bold dark:text-white">High ROI</span>
                                 </div>
-                                <p className="text-xs text-gray-500">
+                                <p className="text-xs text-gray-400">
                                     Solutions that pay for themselves.
                                 </p>
                             </div>
@@ -85,7 +85,7 @@ export function ValueProposition() {
                                         Rapid Deployment
                                     </span>
                                 </div>
-                                <p className="text-xs text-gray-500">
+                                <p className="text-xs text-gray-400">
                                     Get up and running in record time.
                                 </p>
                             </div>
@@ -119,7 +119,7 @@ export function ValueProposition() {
                         <h3 className="text-3xl md:text-4xl font-display font-bold mb-6 dark:text-white">
                             Custom Solutions
                         </h3>
-                        <p className="text-lg text-gray-500 dark:text-gray-400 mb-8">
+                        <p className="text-lg text-gray-400 dark:text-gray-400 mb-8">
                             Every business is unique. We build bespoke AI architectures that fit
                             your specific infrastructure and goals perfectly.
                         </p>
@@ -131,7 +131,7 @@ export function ValueProposition() {
                                         Seamless Integration
                                     </span>
                                 </div>
-                                <p className="text-xs text-gray-500">
+                                <p className="text-xs text-gray-400">
                                     Works with your existing stack.
                                 </p>
                             </div>
@@ -142,7 +142,7 @@ export function ValueProposition() {
                                         Enterprise Security
                                     </span>
                                 </div>
-                                <p className="text-xs text-gray-500">Built with safety first.</p>
+                                <p className="text-xs text-gray-400">Built with safety first.</p>
                             </div>
                         </div>
                     </div>

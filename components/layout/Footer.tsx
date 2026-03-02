@@ -9,7 +9,7 @@ export function Footer() {
                 <h2 className="text-4xl font-display font-bold mb-6">
                     Eletech - Simplify. Automate. Accelerate.
                 </h2>
-                <p className="text-gray-500 mb-8">
+                <p className="text-gray-400 mb-8">
                     Join forward-thinking companies streamlining their future with us.
                 </p>
                 <div className="flex justify-center gap-4 flex-wrap">
@@ -36,22 +36,22 @@ export function Footer() {
                     </span>
                 </div>
 
-                <div className="text-xs text-gray-500 flex flex-col md:flex-row gap-4 items-center">
+                <div className="text-xs text-gray-400 flex flex-col md:flex-row gap-4 items-center">
                     <span>Lahore, Pakistan</span>
                     <span>+92 (300) 044-2407</span>
                     <span>support@eletech.io</span>
                 </div>
 
                 <div className="flex space-x-6">
-                    <Link href="#" className="text-gray-500 hover:text-white transition-colors">
+                    <Link href="#" className="text-gray-400 hover:text-white transition-colors">
                         <Globe className="h-4 w-4" />
                         <span className="sr-only">Website</span>
                     </Link>
-                    <Link href="#" className="text-gray-500 hover:text-white transition-colors">
+                    <Link href="#" className="text-gray-400 hover:text-white transition-colors">
                         <Monitor className="h-4 w-4" />
                         <span className="sr-only">Display</span>
                     </Link>
-                    <Link href="mailto:support@eletech.io" className="text-gray-500 hover:text-white transition-colors">
+                    <Link href="mailto:support@eletech.io" className="text-gray-400 hover:text-white transition-colors">
                         <Mail className="h-4 w-4" />
                         <span className="sr-only">Email</span>
                     </Link>

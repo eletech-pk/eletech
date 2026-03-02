@@ -7,7 +7,7 @@ export function Integrations() {
                 <h2 className="text-3xl font-display font-bold mb-4 dark:text-white">
                     Effortless Connections
                 </h2>
-                <p className="text-gray-500 max-w-2xl mx-auto">
+                <p className="text-gray-400 max-w-2xl mx-auto">
                     Seamlessly integrate with the tools your team already uses and loves.
                 </p>
             </div>

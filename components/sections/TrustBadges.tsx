@@ -21,7 +21,7 @@ export function TrustBadges() {
                     {brands.map((brand) => (
                         <span
                             key={brand}
-                            className="text-xl font-display font-medium text-gray-500"
+                            className="text-xl font-display font-medium text-gray-400"
                         >
                             {brand}
                         </span>

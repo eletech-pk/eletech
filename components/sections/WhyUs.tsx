@@ -188,9 +188,9 @@ export function WhyUs() {
                                             <div className="flex justify-center mb-4 sm:mb-6">
                                                 <feature.icon className="text-primary w-10 h-10 sm:w-12 sm:h-12" />
                                             </div>
-                                            <h4 className="text-lg sm:text-xl font-bold mb-3 dark:text-white">
+                                            <h3 className="text-lg sm:text-xl font-bold mb-3 dark:text-white">
                                                 {feature.title}
-                                            </h4>
+                                            </h3>
                                             <p className="text-gray-400 leading-relaxed text-xs sm:text-sm">
                                                 {feature.description}
                                             </p>

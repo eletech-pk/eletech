@@ -1,5 +1,11 @@
 'use client'
 
+import React from 'react'
+
+if (typeof globalThis !== 'undefined') {
+    (globalThis as any).React = React;
+}
+
 /**
  * This configuration is used to for the Sanity Studio that’s mounted on the `/app/studio/[[...index]]/page.tsx` route
  */

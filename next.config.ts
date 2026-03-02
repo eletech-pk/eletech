@@ -1,8 +1,17 @@
 import type { NextConfig } from "next";
 
-const nextConfig = {
+const nextConfig: NextConfig = {
   compiler: {
     styledComponents: true,
+  },
+  serverExternalPackages: ["styled-components"],
+  webpack: (config, { webpack }) => {
+    config.plugins.push(
+      new webpack.ProvidePlugin({
+        React: "react",
+      })
+    );
+    return config;
   },
   images: {
     remotePatterns: [

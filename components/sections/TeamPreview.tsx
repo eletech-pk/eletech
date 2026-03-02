@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion"
 import { Linkedin, Twitter, Github } from "lucide-react"
+import Image from "next/image"
 
 const team = [
     {
@@ -64,10 +65,12 @@ export function TeamPreview() {
                             className="group relative h-[320px] md:h-[400px] lg:h-[450px] w-full overflow-hidden rounded-2xl bg-zinc-900 border border-white/5"
                         >
                             {/* Member Image */}
-                            <img
-                                src={member.image}
+                            <Image
+                                src={member.image.replace(/\\/g, '/')}
                                 alt={member.name}
-                                className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                fill
+                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                className="object-cover transition-transform duration-700 group-hover:scale-110"
                             />
 
                             {/* Base Info Overlay (Static but fades out on hover if you prefer, 
@@ -87,13 +90,13 @@ export function TeamPreview() {
                                 </p>
 
                                 <div className="flex gap-4">
-                                    <a href={member.socials.linkedin} className="text-white/60 hover:text-white transition-colors">
+                                    <a href={member.socials.linkedin} aria-label={`${member.name}'s LinkedIn profile`} className="text-white/60 hover:text-white transition-colors">
                                         <Linkedin size={20} />
                                     </a>
-                                    <a href={member.socials.twitter} className="text-white/60 hover:text-white transition-colors">
+                                    <a href={member.socials.twitter} aria-label={`${member.name}'s Twitter profile`} className="text-white/60 hover:text-white transition-colors">
                                         <Twitter size={20} />
                                     </a>
-                                    <a href={member.socials.github} className="text-white/60 hover:text-white transition-colors">
+                                    <a href={member.socials.github} aria-label={`${member.name}'s GitHub profile`} className="text-white/60 hover:text-white transition-colors">
                                         <Github size={20} />
                                     </a>
                                 </div>
