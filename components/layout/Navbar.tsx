@@ -2,6 +2,7 @@
 
 import * as React from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
@@ -23,13 +24,15 @@ export function Navbar() {
     return (
         <nav className="fixed w-full z-50 top-0 start-0 border-b border-white/10 bg-background/75 backdrop-blur-xl">
             <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between px-6 sm:px-8 lg:px-12 py-4">
-                <Link href="/" className="flex items-center space-x-2">
-                    <div className="w-9 h-9 rounded-lg bg-gradient-to-tr from-primary to-secondary flex items-center justify-center text-white font-bold shadow-lg shadow-primary/25">
-                        E
-                    </div>
-                    <span className="self-center text-xl font-display font-semibold tracking-wide whitespace-nowrap">
-                        ELETECH Solutions
-                    </span>
+                <Link href="/" className="flex items-center">
+                    <Image
+                        src="/Eletech logo with name.svg"
+                        alt="Eletech Solutions Logo"
+                        width={180}
+                        height={30}
+                        className="h-8 w-auto"
+                        priority
+                    />
                 </Link>
 
                 <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">

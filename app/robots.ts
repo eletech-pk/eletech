@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
             userAgent: '*',
             allow: '/',
         },
-        sitemap: 'https://eletech-solutions.com/sitemap.xml',
+        sitemap: 'https://eletech.io/sitemap.xml',
     }
 }

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/react";
 import React from 'react';
 import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
@@ -21,6 +22,11 @@ const spaceGrotesk = Space_Grotesk({
 export const metadata: Metadata = {
   title: "ELETECH Solutions | AI & Automation Agency",
   description: "We help businesses leverage artificial intelligence to drive growth, efficiency, and innovation.",
+  icons: {
+    icon: "/Eletech Letter logo white.svg",
+    shortcut: "/Eletech Letter logo white.svg",
+    apple: "/Eletech Letter logo white.svg",
+  },
 };
 
 export default function RootLayout({
@@ -49,6 +55,7 @@ export default function RootLayout({
       >
         <LazyMotion features={domAnimation}>
           {children}
+          <Analytics />
         </LazyMotion>
       </body>
     </html>

@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image"
 import { Globe, Monitor, Mail } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
@@ -27,14 +28,15 @@ export function Footer() {
             </div>
 
             <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-6">
-                <div className="flex items-center space-x-2">
-                    <div className="w-6 h-6 rounded bg-gradient-to-tr from-primary to-secondary flex items-center justify-center text-white text-xs font-bold">
-                        E
-                    </div>
-                    <span className="text-lg font-display font-semibold">
-                        ELETECH Solutions
-                    </span>
-                </div>
+                <Link href="/" className="flex items-center">
+                    <Image
+                        src="/Eletech logo with name.svg"
+                        alt="Eletech Solutions Logo"
+                        width={150}
+                        height={25}
+                        className="h-6 w-auto"
+                    />
+                </Link>
 
                 <div className="text-xs text-gray-400 flex flex-col md:flex-row gap-4 items-center">
                     <span>Lahore, Pakistan</span>
