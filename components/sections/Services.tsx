@@ -22,7 +22,7 @@ const services = [
         description:
             "We simplify your work by turning manual tasks into automated ones!",
         icon: Bot,
-        color: "bg-purple-500/10 text-purple-500",
+        color: "bg-orange-500/10 text-orange-500",
     },
     {
         title: "Smart Workflows",

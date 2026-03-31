@@ -33,6 +33,15 @@ export default defineType({
             },
         }),
         defineField({
+            name: 'videoFile',
+            title: 'Video Preview',
+            type: 'file',
+            options: {
+                accept: 'video/*',
+            },
+            description: 'Upload a video file to be used as a preview in sliders and headers',
+        }),
+        defineField({
             name: 'summary',
             title: 'Summary',
             type: 'text',

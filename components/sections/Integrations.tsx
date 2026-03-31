@@ -69,7 +69,7 @@ export function Integrations() {
                         <m.div
                             animate={{ y: [0, -15, 0] }}
                             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                            className="p-6 rounded-2xl glass-card bg-gradient-to-b from-primary/20 to-purple-900/40 border border-primary/30 transform lg:scale-105 shadow-xl shadow-primary/10 h-full"
+                            className="p-6 rounded-2xl glass-card bg-gradient-to-b from-primary/20 to-orange-950/40 border border-primary/30 transform lg:scale-105 shadow-xl shadow-primary/10 h-full"
                         >
                             <div className="flex items-center gap-4 mb-4">
                                 {/* Placeholder for Notion Logo */}

@@ -84,10 +84,10 @@
   --card-foreground: #f8fafc;
   --popover: #171717;
   --popover-foreground: #f8fafc;
-  --primary: #8b5cf6;
+  --primary: #f97316;
   --primary-foreground: #ffffff;
-  --secondary: #f97316;
-  --secondary-foreground: #ffffff;
+  --secondary: #f8fafc;
+  --secondary-foreground: #0a0a0a;
   --muted: #1e293b;
   --muted-foreground: #94a3b8;
   --accent: #1e293b;
@@ -96,7 +96,7 @@
   --destructive-foreground: #f8fafc;
   --border: #1e293b;
   --input: #1e293b;
-  --ring: #7c3aed;
+  --ring: #f97316;
   --chart-1: #220455;
   --chart-2: #020255;
   --chart-3: #555500;
@@ -129,8 +129,8 @@
     @apply bg-clip-text text-transparent bg-gradient-to-r from-slate-200 to-slate-400;
   }
 
-  .text-gradient-purple {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-violet-500;
+  .text-gradient-orange {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-orange-400 to-amber-500;
   }
 
   .perspective-1000 {
@@ -151,7 +151,7 @@
   }
 
   .process-line {
-    background: linear-gradient(to bottom, transparent, rgba(139, 92, 246, 0.3) 15%, rgba(139, 92, 246, 0.3) 85%, transparent);
+    background: linear-gradient(to bottom, transparent, rgba(249, 115, 22, 0.3) 15%, rgba(249, 115, 22, 0.3) 85%, transparent);
   }
 }
 

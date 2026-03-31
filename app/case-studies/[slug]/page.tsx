@@ -22,6 +22,7 @@ const CASE_STUDY_QUERY = `*[_type == "caseStudy" && slug.current == $slug][0] {
     "slug": slug.current,
     client,
     mainImage,
+    "videoUrl": videoFile.asset->url,
     summary,
     tags,
     technologies,
@@ -45,6 +46,7 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
         slug?: string;
         client?: string;
         mainImage?: unknown;
+        videoUrl?: string;
         summary?: string;
         tags?: string[];
         technologies?: string[];
@@ -147,8 +149,20 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
                         </div>
                     </div>
 
-                    {/* Main Image */}
-                    {imageUrl && (
+                    {/* Main Video or Image */}
+                    {caseStudy.videoUrl ? (
+                        <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/10 mb-12 bg-zinc-900 shadow-2xl">
+                            <video 
+                                src={caseStudy.videoUrl} 
+                                controls 
+                                autoPlay
+                                muted
+                                loop
+                                playsInline
+                                className="w-full h-full object-cover"
+                            />
+                        </div>
+                    ) : imageUrl && (
                         <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/10 mb-12">
                             <Image
                                 src={imageUrl}

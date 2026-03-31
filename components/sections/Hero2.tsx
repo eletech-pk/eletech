@@ -101,7 +101,7 @@ export function Hero2() {
                                     className="text-primary absolute -bottom-5 -right-5 h-10 w-10 opacity-70 stroke-[4]"
                                 />
                                 <span className="block">Transform Your Business with</span>
-                                <span className="block text-gradient-purple italic mt-2">AI Solutions</span>
+                                <span className="block text-gradient-orange italic mt-2">AI Solutions</span>
                             </h1>
                         </div>
                     </div>
@@ -123,6 +123,11 @@ export function Hero2() {
                         <Button asChild variant="outline" size="lg" className="rounded-full bg-white/5 border-white/10 hover:bg-white/10">
                             <Link href="#services">
                                 Our Services
+                            </Link>
+                        </Button>
+                        <Button asChild variant="outline" size="lg" className="rounded-full bg-white/5 border-white/10 hover:bg-white/10">
+                            <Link href="#projects">
+                                View Projects
                             </Link>
                         </Button>
                     </div>

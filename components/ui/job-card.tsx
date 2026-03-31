@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { ArrowRight, MapPin, Briefcase, Clock, DollarSign } from "lucide-react"
+import { ArrowRight, MapPin, Briefcase, Clock, Banknote } from "lucide-react"
 import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
 
@@ -64,7 +64,7 @@ export function JobCard({
                         )}
                         {salary && (
                             <span className="inline-flex items-center gap-1">
-                                <DollarSign className="w-3 h-3" /> {salary}
+                                <Banknote className="w-3 h-3" /> {salary}
                             </span>
                         )}
                     </div>
