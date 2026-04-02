@@ -10,7 +10,6 @@ const AboutPreview = dynamic(() => import('@/components/sections/AboutPreview').
 const HowItWorks = dynamic(() => import('@/components/sections/HowItWorks').then(mod => mod.HowItWorks))
 const ValueAndProof = dynamic(() => import('@/components/sections/ValueAndProof').then(mod => mod.ValueAndProof))
 const Integrations = dynamic(() => import('@/components/sections/Integrations').then(mod => mod.Integrations))
-const TeamPreview = dynamic(() => import('@/components/sections/TeamPreview').then(mod => mod.TeamPreview))
 const FAQ = dynamic(() => import('@/components/sections/FAQ').then(mod => mod.FAQ))
 const CTA = dynamic(() => import('@/components/sections/CTA').then(mod => mod.CTA))
 const TrustBadges = dynamic(() => import('@/components/sections/TrustBadges').then(mod => mod.TrustBadges))
@@ -28,7 +27,6 @@ export default function Home() {
       <FeaturedProjects />
       <HowItWorks />
       <Integrations />
-      {/* <TeamPreview /> */}
       <FAQ />
       <CTA />
       <Footer />

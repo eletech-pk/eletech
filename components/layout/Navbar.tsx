@@ -3,11 +3,13 @@
 import * as React from "react"
 import Link from "next/link"
 import Image from "next/image"
+import { usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 export function Navbar() {
     const [isOpen, setIsOpen] = React.useState(false)
+    const pathname = usePathname()
 
     const MenuIcon = () => (
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5"><line x1="4" x2="20" y1="12" y2="12" /><line x1="4" x2="20" y1="6" y2="6" /><line x1="4" x2="20" y1="18" y2="18" /></svg>
@@ -67,7 +69,12 @@ export function Navbar() {
                             <li key={item.label}>
                                 <Link
                                     href={item.href}
-                                    className="block py-2 px-3 text-sm md:text-base text-foreground/80 rounded-md hover:bg-accent/70 md:hover:bg-transparent md:hover:text-primary md:p-0 transition-colors"
+                                    className={cn(
+                                        "block py-2 px-3 text-sm md:text-base rounded-md md:p-0 transition-colors",
+                                        pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href))
+                                            ? "text-primary font-bold bg-accent/70 md:bg-transparent"
+                                            : "text-foreground/80 hover:bg-accent/70 md:hover:bg-transparent md:hover:text-primary"
+                                    )}
                                 >
                                     {item.label}
                                 </Link>

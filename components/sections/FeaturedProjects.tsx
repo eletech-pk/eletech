@@ -3,6 +3,7 @@ import { client } from "@/sanity/lib/client";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ProjectCard } from "@/components/sections/ProjectCard";
+import { ProjectGridWithSlider } from "@/components/sections/ProjectGridWithSlider";
 
 async function getFeaturedProjects() {
     const query = `*[_type == "caseStudy" && featured == true && defined(slug.current)] | order(publishedAt desc)[0...3] {
@@ -29,18 +30,14 @@ export async function FeaturedProjects() {
                         <h2 className="text-4xl md:text-5xl font-display font-bold text-white leading-tight">
                             Featured <span className="italic font-serif font-light text-gray-400">Projects</span>
                         </h2>
-                        <p className="text-gray-400 text-lg mt-4 max-w-2xl">
+                        <p className="text-gray-400 text-sm md:text-lg mt-4 max-w-2xl">
                             Explore our recent case studies and see how we've helped businesses transform through next-gen automation and AI solutions.
                         </p>
                     </div>
                 </div>
 
-                {/* CSS Grid for exactly 3 Items */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {projects.map((project: any) => (
-                        <ProjectCard key={project._id} project={project} />
-                    ))}
-                </div>
+                {/* Cross-Platform Projects Grid/Slider */}
+                <ProjectGridWithSlider projects={projects} />
                 
                 {/* View All Projects Button */}
                 <div className="mt-16 flex justify-center">

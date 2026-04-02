@@ -108,13 +108,13 @@ export function ValueAndProof() {
                         <m.div
                             animate={{ y: [-5, 5, -5], x: [-5, 5, -5] }}
                             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                            className="absolute top-[20%] left-[5%] md:left-[10%] z-20 w-40 glass-card p-3 rounded-xl border border-white/10 shadow-2xl backdrop-blur-md bg-black/40"
+                            className="absolute top-[15%] md:top-[20%] left-[2%] md:left-[10%] z-20 w-[130px] md:w-40 glass-card p-2 md:p-3 rounded-xl border border-white/10 shadow-2xl backdrop-blur-md bg-black/40"
                         >
-                            <div className="flex items-center gap-2 mb-2">
-                                <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                                <span className="text-xs text-gray-400 font-mono tracking-wider uppercase">System Ops</span>
+                            <div className="flex items-center gap-1.5 md:gap-2 mb-1.5 md:mb-2">
+                                <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-green-500 animate-pulse" />
+                                <span className="text-[10px] md:text-xs text-gray-400 font-mono tracking-wider uppercase">System Ops</span>
                             </div>
-                            <div className="font-mono text-xl font-bold text-white mb-1">
+                            <div className="font-mono text-lg md:text-xl font-bold text-white mb-1">
                                 <AnimatedNumber min={92} max={99} suffix="%" />
                             </div>
                             <div className="w-full bg-zinc-800 rounded-full h-1.5 overflow-hidden">
@@ -130,30 +130,30 @@ export function ValueAndProof() {
                         <m.div
                             animate={{ y: [5, -5, 5] }}
                             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                            className="absolute top-[25%] right-[0%] md:right-[5%] z-20 w-44 glass-card p-4 rounded-xl border border-primary/20 shadow-xl shadow-primary/5 backdrop-blur-md bg-black/40"
+                            className="absolute top-[20%] md:top-[25%] right-0 md:right-[5%] z-20 w-[140px] md:w-44 glass-card p-2.5 md:p-4 rounded-xl border border-primary/20 shadow-xl shadow-primary/5 backdrop-blur-md bg-black/40"
                         >
-                            <div className="flex items-center gap-2 mb-2">
-                                <Code2 className="w-4 h-4 text-primary" />
-                                <span className="text-xs text-primary/80 font-mono tracking-wider uppercase">Model Gen</span>
+                            <div className="flex items-center gap-1.5 md:gap-2 mb-1.5 md:mb-2">
+                                <Code2 className="w-3 h-3 md:w-4 md:h-4 text-primary" />
+                                <span className="text-[10px] md:text-xs text-primary/80 font-mono tracking-wider uppercase">Model Gen</span>
                             </div>
-                            <div className="font-mono text-lg font-bold text-white">
+                            <div className="font-mono text-base md:text-lg font-bold text-white">
                                 <AnimatedNumber min={1024} max={4096} suffix=" tokens" speed={100} />
                             </div>
-                            <p className="text-[10px] text-gray-500 mt-1 uppercase tracking-widest">/ sec</p>
+                            <p className="text-[8px] md:text-[10px] text-gray-500 mt-0.5 md:mt-1 uppercase tracking-widest">/ sec</p>
                         </m.div>
 
                         {/* Floating Data Card 3 : Latency */}
                         <m.div
                             animate={{ y: [-8, 8, -8], x: [5, -5, 5] }}
                             transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-                            className="absolute bottom-[20%] left-[15%] md:left-[20%] z-20 glass-card px-4 py-3 rounded-xl border border-white/10 shadow-xl backdrop-blur-md flex items-center gap-4 bg-black/40"
+                            className="absolute bottom-[15%] md:bottom-[20%] left-[6%] md:left-[20%] z-20 glass-card px-2.5 py-2 md:px-4 md:py-3 rounded-xl border border-white/10 shadow-xl backdrop-blur-md flex items-center gap-3 md:gap-4 bg-black/40"
                         >
-                            <Server className="w-5 h-5 text-gray-400" />
+                            <Server className="w-4 h-4 md:w-5 md:h-5 text-gray-400" />
                             <div>
-                                <div className="text-[10px] text-gray-500 font-mono tracking-wider uppercase mb-0.5">Latency</div>
-                                <div className="font-mono text-sm font-bold text-green-400 flex items-baseline gap-1">
+                                <div className="text-[8px] md:text-[10px] text-gray-500 font-mono tracking-wider uppercase mb-0.5">Latency</div>
+                                <div className="font-mono text-xs md:text-sm font-bold text-green-400 flex items-baseline gap-1">
                                     <AnimatedNumber min={8} max={24} speed={500} />
-                                    <span className="text-xs text-gray-400 font-normal">ms</span>
+                                    <span className="text-[10px] md:text-xs text-gray-400 font-normal">ms</span>
                                 </div>
                             </div>
                         </m.div>
@@ -162,9 +162,9 @@ export function ValueAndProof() {
                         <m.div
                             animate={{ y: [8, -8, 8] }}
                             transition={{ duration: 6.5, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
-                            className="absolute bottom-[25%] right-[5%] z-10 glass-card p-3 rounded-lg border border-white/5 opacity-60 backdrop-blur-sm bg-black/40"
+                            className="absolute bottom-[20%] md:bottom-[25%] right-[1%] md:right-[5%] z-10 glass-card p-2 md:p-3 rounded-lg border border-white/5 opacity-60 backdrop-blur-sm bg-black/40"
                         >
-                            <pre className="text-[10px] font-mono text-gray-400 leading-tight">
+                            <pre className="text-[8px] md:text-[10px] font-mono text-gray-400 leading-tight">
                                 <span className="text-pink-500">const</span> optimize = <span className="text-yellow-300">await</span> ai.run({`{`}<br />
                                 &nbsp;&nbsp;model: <span className="text-green-300">'eletech-v2'</span>,<br />
                                 &nbsp;&nbsp;data: stream<br />

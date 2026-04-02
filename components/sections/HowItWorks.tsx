@@ -42,7 +42,7 @@ export function HowItWorks() {
                 </div>
 
                 {/* Horizontal 3-Column Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 relative">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 lg:gap-12 relative">
                     {/* Optional: Horizontal connecting line on desktop */}
                     <div className="hidden md:block absolute top-[2.5rem] left-[15%] right-[15%] h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent -z-10" />
 
@@ -55,18 +55,18 @@ export function HowItWorks() {
                             transition={{ duration: 0.5, delay: index * 0.2 }}
                             className="flex flex-col items-center text-center group"
                         >
-                            {/* Number Badge */}
-                            <div className="w-16 h-16 rounded-2xl flex flex-col justify-center items-center relative overflow-hidden border border-white/10 mb-6 bg-black/40 group-hover:bg-primary/10 transition-colors duration-500">
+                            {/* Number Badge (Desktop Only) */}
+                            <div className="hidden md:flex w-16 h-16 rounded-2xl flex-col justify-center items-center relative overflow-hidden border border-white/10 mb-6 bg-black/40 group-hover:bg-primary/10 transition-colors duration-500">
                                 <span className="text-2xl font-bold font-mono text-white group-hover:text-primary transition-colors">{step.number}</span>
                             </div>
 
                             {/* Icon */}
-                            <div className="mb-6 h-20 flex items-center justify-center">
-                                <step.icon className="w-12 h-12 text-primary/60 group-hover:text-primary transition-colors duration-500 group-hover:scale-110" strokeWidth={1.5} />
+                            <div className="mb-4 md:mb-6 h-12 md:h-20 flex items-center justify-center shrink-0">
+                                <step.icon className="w-10 h-10 md:w-12 md:h-12 text-primary/60 group-hover:text-primary transition-colors duration-500 group-hover:scale-110" strokeWidth={1.5} />
                             </div>
 
                             {/* Content */}
-                            <h3 className="text-xl font-display font-medium text-white mb-3">
+                            <h3 className="text-xl font-display font-medium text-white mb-2 md:mb-3">
                                 {step.title}
                             </h3>
                             <p className="text-muted-foreground text-sm leading-relaxed max-w-sm">

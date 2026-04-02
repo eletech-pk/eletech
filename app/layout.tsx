@@ -55,7 +55,7 @@ export default function RootLayout({
       >
         <LazyMotion features={domAnimation}>
           {children}
-          <Analytics />
+          {process.env.VERCEL === '1' && <Analytics />}
         </LazyMotion>
       </body>
     </html>
