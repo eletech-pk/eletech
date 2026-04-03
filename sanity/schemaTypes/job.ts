@@ -6,6 +6,13 @@ export default defineType({
     type: 'document',
     fields: [
         defineField({
+            name: 'isActive',
+            title: 'Is Active Position?',
+            type: 'boolean',
+            description: 'Turn off when the position is filled to hide it from the website without deleting the post.',
+            initialValue: true,
+        }),
+        defineField({
             name: 'title',
             title: 'Job Title',
             type: 'string',

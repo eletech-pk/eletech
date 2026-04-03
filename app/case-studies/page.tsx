@@ -58,8 +58,6 @@ export default async function CaseStudiesPage() {
             <Navbar />
 
             <PageHero
-                badge="Our Work"
-                badgeIcon={<FolderKanban className="w-3 h-3" />}
                 title="Case Studies & Projects"
                 subtitle="Explore our portfolio of successful projects. From AI-powered platforms to automation suites, see how we've helped businesses transform through technology."
             />

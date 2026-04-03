@@ -48,7 +48,6 @@ export function CTA() {
                     transition={{ duration: 0.6 }}
                     className="text-center mb-16"
                 >
-                    <SubtleBadge className="mb-4">Get Started</SubtleBadge>
                     <BlurInHeading as="h2" className="text-3xl md:text-5xl mb-4">
                         Ready to Transform Your Business?
                     </BlurInHeading>

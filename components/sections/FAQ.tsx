@@ -39,7 +39,6 @@ export function FAQ() {
                         transition={{ duration: 0.6 }}
                         className="text-center mb-16"
                     >
-                        <SubtleBadge className="mb-4">Common Questions</SubtleBadge>
                         <h2 className="text-3xl md:text-5xl font-display font-bold mb-4">
                             Frequently Asked Questions
                         </h2>

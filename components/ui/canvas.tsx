@@ -17,8 +17,8 @@ export const renderCanvas = function () {
     const E = {
         debug: true,
         friction: 0.5,
-        trails: 80,
-        size: 50,
+        trails: 40, // Dropped to 40 to halve original computation load
+        size: 50,   // Restored to 50 for silky smooth structural arcs
         dampening: 0.025,
         tension: 0.99,
     };
@@ -142,9 +142,14 @@ export const renderCanvas = function () {
         if (ctx.running) {
             ctx.globalCompositeOperation = "source-over";
             ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+            
+            // Restoring the Canvas pixel addition which multiplies overlap opacities 
+            // to recreate the glowing slow-spread fade illusion
             ctx.globalCompositeOperation = "lighter";
-            ctx.strokeStyle = "hsla(" + Math.round(f.update()) + ",100%,50%,0.025)";
+            // 0.05 opacity compensates for having 40 trails instead of 80
+            ctx.strokeStyle = "hsla(" + Math.round(f.update()) + ",100%,50%,0.05)";
             ctx.lineWidth = 10;
+            
             for (let e, t = 0; t < E.trails; t++) {
                 e = lines[t];
                 if (e) {
@@ -185,4 +190,22 @@ export const renderCanvas = function () {
     });
 
     resizeCanvas();
+    
+    // Auto-start exactly once initially
+    if (!ctx.running) {
+        ctx.running = true;
+        render();
+    }
+
+    return {
+        start: () => {
+            if (!ctx.running) {
+                ctx.running = true;
+                render();
+            }
+        },
+        stop: () => {
+            ctx.running = false;
+        }
+    };
 };

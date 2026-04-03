@@ -50,8 +50,6 @@ export default function AboutPage() {
 
             {/* Hero */}
             <PageHero
-                badge="About Us"
-                badgeIcon={<Sparkles className="w-3 h-3" />}
                 title="Empowering Businesses Through Intelligent Technology"
                 subtitle="At ELETECH Solutions, we bridge the gap between complex AI capabilities and real-world business needs. Based in Lahore, Pakistan, we're a team of engineers, strategists, and designers building the future of automation."
             />

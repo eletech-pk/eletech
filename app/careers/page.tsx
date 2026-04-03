@@ -8,7 +8,7 @@ import { Users } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
-const JOBS_QUERY = `*[_type == "job"] | order(publishedAt desc) {
+const JOBS_QUERY = `*[_type == "job" && isActive != false] | order(publishedAt desc) {
     title,
     "slug": slug.current,
     department,
@@ -55,8 +55,6 @@ export default async function CareersPage() {
             <Navbar />
 
             <PageHero
-                badge="Careers"
-                badgeIcon={<Users className="w-3 h-3" />}
                 title="Join Our Team"
                 subtitle="We're building the future of AI-powered business solutions. Join a team of passionate engineers, designers, and strategists who love solving complex problems."
             />

@@ -45,13 +45,9 @@ export function Footer() {
                 </div>
 
                 <div className="flex space-x-6">
-                    <Link href="#" className="text-gray-400 hover:text-white transition-colors">
+                    <Link href="/" className="text-gray-400 hover:text-white transition-colors">
                         <Globe className="h-4 w-4" />
                         <span className="sr-only">Website</span>
-                    </Link>
-                    <Link href="#" className="text-gray-400 hover:text-white transition-colors">
-                        <Monitor className="h-4 w-4" />
-                        <span className="sr-only">Display</span>
                     </Link>
                     <Link href="mailto:support@eletech.io" className="text-gray-400 hover:text-white transition-colors">
                         <Mail className="h-4 w-4" />

@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 
 export function HeroCanvas() {
     const containerRef = useRef<HTMLDivElement>(null);
+    const canvasControllerRef = useRef<any>(null);
 
     useEffect(() => {
         if (!containerRef.current || typeof window === "undefined") return;
@@ -12,18 +13,33 @@ export function HeroCanvas() {
             (entries) => {
                 entries.forEach((entry) => {
                     if (entry.isIntersecting && window.innerWidth >= 768) {
-                        import("@/components/ui/canvas").then(({ renderCanvas }) => {
-                            renderCanvas();
-                        });
-                        observer.disconnect();
+                        if (!canvasControllerRef.current) {
+                            import("@/components/ui/canvas").then(({ renderCanvas }) => {
+                                // Initialize and save controller
+                                if (!canvasControllerRef.current) {
+                                    canvasControllerRef.current = renderCanvas();
+                                }
+                            });
+                        } else {
+                            canvasControllerRef.current.start();
+                        }
+                    } else {
+                        if (canvasControllerRef.current) {
+                            canvasControllerRef.current.stop();
+                        }
                     }
                 });
             },
-            { rootMargin: "0px", threshold: 0.1 }
+            { rootMargin: "200px 0px", threshold: 0 }
         );
 
         observer.observe(containerRef.current);
-        return () => observer.disconnect();
+        return () => {
+            observer.disconnect();
+            if (canvasControllerRef.current) {
+                canvasControllerRef.current.stop();
+            }
+        };
     }, []);
 
     return (

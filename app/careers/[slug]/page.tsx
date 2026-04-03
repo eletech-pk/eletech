@@ -18,7 +18,7 @@ import { JobDetailClient } from "./JobDetailClient";
 
 export const dynamic = "force-dynamic";
 
-const JOB_QUERY = `*[_type == "job" && slug.current == $slug][0] {
+const JOB_QUERY = `*[_type == "job" && slug.current == $slug && isActive != false][0] {
     title,
     "slug": slug.current,
     department,

@@ -1,9 +1,10 @@
 "use client"
 
 import { m, useMotionValue, useSpring, useTransform } from "framer-motion"
-import { Linkedin, Twitter, Github } from "lucide-react"
+import { Linkedin, Twitter, Github, ChevronLeft, ChevronRight } from "lucide-react"
 import Image from "next/image"
-import { MouseEvent, useRef } from "react"
+import { MouseEvent, useRef, useState, useEffect } from "react"
+import { Button } from "@/components/ui/button"
 
 const team = [
     {
@@ -143,20 +144,67 @@ function TiltCard({ member, index }: { member: typeof team[0], index: number }) 
 }
 
 export function TeamPreview() {
+    const [currentIndex, setCurrentIndex] = useState(0)
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setCurrentIndex((prev) => (prev + 1) % team.length);
+        }, 4000);
+        return () => clearInterval(timer);
+    }, []);
+
+    const next = () => setCurrentIndex((prev) => (prev + 1) % team.length);
+    const prev = () => setCurrentIndex((prev) => (prev - 1 + team.length) % team.length);
+
     return (
         <section className="py-24 w-full overflow-hidden">
-            <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-                <div className="text-center mb-16">
+            <div className="max-w-7xl mx-auto px-0 sm:px-8 lg:px-12">
+                <div className="text-center mb-16 px-6 sm:px-0">
                     <h2 className="text-4xl md:text-5xl font-display font-bold text-white mb-4">
                         Meet The Team Members
                     </h2>
                     <div className="w-20 h-1 bg-primary mx-auto rounded-full"></div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10 mx-auto max-w-[280px] sm:max-w-none perspective-1000">
+                {/* Desktop Grid */}
+                <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10 mx-auto perspective-1000">
                     {team.map((member, index) => (
                         <TiltCard key={member.name} member={member} index={index} />
                     ))}
+                </div>
+
+                {/* Mobile Slider */}
+                <div className="block sm:hidden relative w-full overflow-hidden pb-4 px-8">
+                    <div 
+                        className="flex transition-transform duration-500 ease-in-out"
+                        style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+                    >
+                        {team.map((member, index) => (
+                            <div key={member.name} className="w-full flex-shrink-0 px-2">
+                                <TiltCard member={member} index={index} />
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Mobile Navigation Controls */}
+                <div className="flex sm:hidden justify-center items-center gap-4 mt-8 px-6">
+                    <Button variant="ghost" size="icon" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 text-white hover:bg-primary/20 hover:border-primary/50 transition-colors" onClick={prev}>
+                        <ChevronLeft className="w-5 h-5" />
+                    </Button>
+                    <div className="flex gap-2 mx-2">
+                        {team.map((_, i) => (
+                            <button 
+                                key={i} 
+                                onClick={() => setCurrentIndex(i)}
+                                className={`h-2 rounded-full transition-all duration-300 ${i === currentIndex ? "bg-primary w-6" : "bg-white/20 w-2"}`}
+                                aria-label={`Go to slide ${i + 1}`}
+                            />
+                        ))}
+                    </div>
+                    <Button variant="ghost" size="icon" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 text-white hover:bg-primary/20 hover:border-primary/50 transition-colors" onClick={next}>
+                        <ChevronRight className="w-5 h-5" />
+                    </Button>
                 </div>
             </div>
         </section>

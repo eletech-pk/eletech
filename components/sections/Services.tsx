@@ -1,8 +1,8 @@
 "use client"
 
 import Link from "next/link"
-import { useState, useEffect } from "react"
-import { m, AnimatePresence } from "framer-motion"
+import { useState, useEffect, useRef } from "react"
+
 import {
     Bot,
     Code2,
@@ -12,7 +12,6 @@ import {
     Cloud,
     ChevronLeft,
     ChevronRight,
-    ArrowRight,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
@@ -61,34 +60,65 @@ const services = [
     },
 ]
 
+// Card width on mobile: 80% of viewport minus section padding (px-6 = 24px * 2 = 48px)
+// So card = 100vw - 48px (section) - 48px (right peek space) = 100vw - 96px
+const MOBILE_CARD_VW = "calc(100vw - 96px)"
+// The scroll step per card in pixels (used for programmatic scrollTo)
+const getMobileCardPx = () => window.innerWidth - 96
+
 export function Services() {
     const [currentIndex, setCurrentIndex] = useState(0)
     const [isHovered, setIsHovered] = useState(false)
+    const mobileScrollRef = useRef<HTMLDivElement>(null)
+
+    // ── Mobile: programmatic scroll ──────────────────────────────────────────
+    const scrollMobileTo = (idx: number) => {
+        const el = mobileScrollRef.current
+        if (!el) return
+        el.scrollTo({ left: idx * getMobileCardPx(), behavior: "smooth" })
+    }
 
     const nextSlide = () => {
-        setCurrentIndex((prev) => (prev + 1) % (services.length - 1))
+        const next = (currentIndex + 1) % services.length
+        setCurrentIndex(next)
+        scrollMobileTo(next)
     }
 
     const prevSlide = () => {
-        setCurrentIndex((prev) =>
-            prev === 0 ? services.length - 2 : prev - 1
-        )
+        const prev = currentIndex === 0 ? services.length - 1 : currentIndex - 1
+        setCurrentIndex(prev)
+        scrollMobileTo(prev)
     }
 
+    // ── Auto-play ────────────────────────────────────────────────────────────
     useEffect(() => {
-        if (isHovered) return;
+        if (isHovered) return
+        const interval = setInterval(nextSlide, 3000)
+        return () => clearInterval(interval)
+    }, [isHovered, currentIndex])
 
-        const interval = setInterval(() => {
-            nextSlide();
-        }, 3000);
-
-        return () => clearInterval(interval);
-    }, [isHovered, currentIndex]);
-
-    const visibleServices = [
-        services[currentIndex],
-        services[(currentIndex + 1) % services.length],
-    ]
+    // ── Shared card content ──────────────────────────────────────────────────
+    const renderCard = (service: (typeof services)[0], idx: number) => (
+        <div className="flex flex-col h-full p-6 sm:p-8 rounded-3xl bg-[#0A0A0A] border border-white/5 hover:border-white/10 transition-colors group">
+            <div className="flex items-center gap-3 mb-4">
+                <div className={`p-2 rounded-lg ${service.color}`}>
+                    <service.icon className="w-6 h-6" />
+                </div>
+                <h3 className="text-xl font-bold text-white">{service.title}</h3>
+            </div>
+            <p className="text-gray-400 mb-6 flex-grow text-sm sm:text-base leading-relaxed">
+                {service.description}
+            </p>
+            <Link href="#contact" className="inline-block mt-auto w-full sm:w-auto">
+                <Button
+                    variant="secondary"
+                    className="w-full rounded-full bg-white/10 text-white hover:bg-white/20 border-0"
+                >
+                    Get started
+                </Button>
+            </Link>
+        </div>
+    )
 
     return (
         <section
@@ -99,7 +129,7 @@ export function Services() {
         >
             <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
                 <div className="grid lg:grid-cols-12 gap-12 items-center">
-                    {/* Left Column: Text Content */}
+                    {/* Left Column */}
                     <div className="lg:col-span-5 space-y-8">
                         <h2 className="text-4xl md:text-5xl font-display font-bold text-white leading-tight">
                             Smarter Services,
@@ -114,8 +144,8 @@ export function Services() {
                             automate tasks.
                         </p>
 
-                        {/* Navigation Buttons */}
-                        <div className="flex gap-4">
+                        {/* Nav Buttons — mobile */}
+                        <div className="flex lg:hidden gap-4">
                             <button
                                 onClick={prevSlide}
                                 aria-label="Previous service"
@@ -133,36 +163,59 @@ export function Services() {
                         </div>
                     </div>
 
-                    {/* Right Column: Carousel */}
-                    <div className="lg:col-span-7">
-                        <div className="grid md:grid-cols-2 gap-6 items-start">
-                            <AnimatePresence mode="popLayout">
-                                {visibleServices.map((service, idx) => (
-                                    <m.div
-                                        key={`${service.title}-${currentIndex}-${idx}`}
-                                        initial={{ opacity: 0, x: 50 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        exit={{ opacity: 0, x: -50 }}
-                                        transition={{ duration: 0.3, delay: idx * 0.1 }}
-                                        className="flex flex-col p-6 sm:p-8 rounded-3xl bg-[#0A0A0A] border border-white/5 hover:border-white/10 transition-colors group"
+                    {/* Right Column */}
+                    <div className="lg:col-span-7 flex flex-col">
+
+                        {/* ── MOBILE carousel (scroll-snap, vw-based widths) ── */}
+                        <div
+                            ref={mobileScrollRef}
+                            className="md:hidden flex overflow-x-auto snap-x snap-mandatory py-4"
+                            style={{ scrollbarWidth: "none", msOverflowStyle: "none" } as React.CSSProperties}
+                        >
+                            {services.map((service, idx) => (
+                                <div
+                                    key={`mob-${service.title}-${idx}`}
+                                    className="flex-shrink-0 snap-start pr-3"
+                                    style={{ width: MOBILE_CARD_VW }}
+                                >
+                                    {renderCard(service, idx)}
+                                </div>
+                            ))}
+                        </div>
+
+                        {/* ── DESKTOP carousel (translateX, w-1/2) ── */}
+                        <div className="hidden md:block relative w-full overflow-hidden py-4">
+                            <div
+                                className="flex transition-transform duration-500 ease-in-out"
+                                style={{ transform: `translateX(calc(-${currentIndex} * 50%))` }}
+                            >
+                                {services.map((service, idx) => (
+                                    <div
+                                        key={`desk-${service.title}-${idx}`}
+                                        className="w-1/2 flex-shrink-0 px-2 md:px-4"
                                     >
-                                        <h3 className="text-xl font-bold text-white mb-3">
-                                            {service.title}
-                                        </h3>
-                                        <p className="text-gray-400 mb-6 flex-grow">
-                                            {service.description}
-                                        </p>
-                                        <Link href="#contact" className="inline-block mt-auto">
-                                            <Button
-                                                variant="secondary"
-                                                className="rounded-full bg-white/10 text-white hover:bg-white/20 border-0"
-                                            >
-                                                Get started
-                                            </Button>
-                                        </Link>
-                                    </m.div>
+                                        {renderCard(service, idx)}
+                                    </div>
                                 ))}
-                            </AnimatePresence>
+                            </div>
+                        </div>
+
+                        {/* Nav Buttons — desktop */}
+                        <div className="hidden lg:flex gap-4 pl-4 md:pl-8 mt-6">
+                            <button
+                                onClick={prevSlide}
+                                aria-label="Previous service"
+                                className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-primary/20 hover:border-primary/50 transition-colors"
+                            >
+                                <ChevronLeft className="w-5 h-5" />
+                            </button>
+                            <button
+                                onClick={nextSlide}
+                                aria-label="Next service"
+                                className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-primary/20 hover:border-primary/50 transition-colors"
+                            >
+                                <ChevronRight className="w-5 h-5" />
+                            </button>
                         </div>
                     </div>
                 </div>

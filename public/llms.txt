@@ -1,0 +1,30 @@
+# ELETECH Solutions
+
+ELETECH Solutions is a high-tech AI & Automation Agency specializing in transforming business operations through custom artificial intelligence implementation, software development, and strategic technology advisory.
+
+## Core Services
+- AI Strategy & Implementation
+- Custom Software Development
+- Business Process Automation
+- Cloud Engineering & Scalable Infrastructure
+- IT Advisory & Digital Transformation
+
+## Key Sections
+- Home: Overview of capabilities and value proposition.
+- About: Company mission and leadership team.
+- Services: Detailed breakdown of AI and engineering offerings.
+- Case Studies: Real-world impact stories of client transformations.
+- Careers: Open positions for AI engineers and developers.
+- Contact: Inquiries for business partnerships.
+
+## Project Vision
+To empower enterprise and medium-sized businesses by bridging the gap between cutting-edge AI research and practical, high-ROI operational applications.
+
+## Technical Stack
+- Frontend: Next.js, React, Tailwind CSS, Framer Motion
+- CMS: Sanity.io
+- Analytics: Vercel Analytics
+
+## Contact Information
+- Website: https://eletech.io
+- Location: Global / Remote First
