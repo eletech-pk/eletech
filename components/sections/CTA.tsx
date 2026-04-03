@@ -71,7 +71,7 @@ export function CTA() {
                     ) : (
                         <Cal
                             namespace="30min"
-                            calLink="eletech/30min"
+                            calLink="eletech.pk/30min"
                             style={{ width: "100%", height: "100%", minHeight: "600px", overflow: "scroll" }}
                             config={{ "layout": "month_view", "useSlotsViewOnSmallScreen": "true" }}
                         />
