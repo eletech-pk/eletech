@@ -70,6 +70,11 @@ export function Services() {
     const [currentIndex, setCurrentIndex] = useState(0)
     const [isHovered, setIsHovered] = useState(false)
     const mobileScrollRef = useRef<HTMLDivElement>(null)
+    const trackRef = useRef<HTMLDivElement>(null)
+
+    // Clone enough cards at the end so the carousel always has cards to show
+    const CLONES = 3
+    const extendedServices = [...services, ...services.slice(0, CLONES)]
 
     // ── Mobile: programmatic scroll ──────────────────────────────────────────
     const scrollMobileTo = (idx: number) => {
@@ -79,15 +84,60 @@ export function Services() {
     }
 
     const nextSlide = () => {
-        const next = (currentIndex + 1) % services.length
+        let idx = currentIndex
+        // If already in clone zone (rapid clicking skipped onTransitionEnd), snap back first
+        if (idx >= services.length) {
+            const track = trackRef.current
+            if (track) {
+                track.style.transition = 'none'
+                idx = idx % services.length
+                track.style.transform = `translateX(calc(-${idx} * 40%))`
+                void track.offsetHeight
+                track.style.transition = ''
+            }
+        }
+        const next = idx + 1
         setCurrentIndex(next)
-        scrollMobileTo(next)
+        scrollMobileTo(next % services.length)
     }
 
     const prevSlide = () => {
-        const prev = currentIndex === 0 ? services.length - 1 : currentIndex - 1
-        setCurrentIndex(prev)
-        scrollMobileTo(prev)
+        if (currentIndex === 0) {
+            // Jump to clone zone instantly, then animate one step back
+            const track = trackRef.current
+            if (track) {
+                track.style.transition = 'none'
+                track.style.transform = `translateX(calc(-${services.length} * 40%))`
+                void track.offsetHeight
+                track.style.transition = ''
+            }
+            setCurrentIndex(services.length - 1)
+            scrollMobileTo(services.length - 1)
+        } else {
+            setCurrentIndex(currentIndex - 1)
+            scrollMobileTo((currentIndex - 1) % services.length)
+        }
+    }
+
+    // When desktop transition ends in clone zone, snap back to real position
+    // Uses direct DOM manipulation to guarantee the jump is invisible
+    const handleTransitionEnd = () => {
+        if (currentIndex >= services.length) {
+            const track = trackRef.current
+            if (track) {
+                // 1. Kill transition
+                track.style.transition = 'none'
+                // 2. Jump to real position
+                const realIndex = currentIndex % services.length
+                track.style.transform = `translateX(calc(-${realIndex} * 40%))`
+                // 3. Force reflow so the browser commits the jump
+                void track.offsetHeight
+                // 4. Re-enable transition
+                track.style.transition = ''
+                // 5. Sync React state (no re-render flicker since DOM already matches)
+                setCurrentIndex(realIndex)
+            }
+        }
     }
 
     // ── Auto-play ────────────────────────────────────────────────────────────
@@ -130,7 +180,7 @@ export function Services() {
             <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
                 <div className="grid lg:grid-cols-12 gap-12 items-center">
                     {/* Left Column */}
-                    <div className="lg:col-span-5 space-y-8">
+                    <div className="lg:col-span-4 space-y-8">
                         <h2 className="text-4xl md:text-5xl font-display font-bold text-white leading-tight">
                             Smarter Services,
                             <br />
@@ -164,7 +214,7 @@ export function Services() {
                     </div>
 
                     {/* Right Column */}
-                    <div className="lg:col-span-7 flex flex-col">
+                    <div className="lg:col-span-8 flex flex-col">
 
                         {/* ── MOBILE carousel (scroll-snap, vw-based widths) ── */}
                         <div
@@ -183,16 +233,18 @@ export function Services() {
                             ))}
                         </div>
 
-                        {/* ── DESKTOP carousel (translateX, w-1/2) ── */}
+                        {/* ── DESKTOP carousel (translateX, infinite loop) ── */}
                         <div className="hidden md:block relative w-full overflow-hidden py-4">
                             <div
+                                ref={trackRef}
                                 className="flex transition-transform duration-500 ease-in-out"
-                                style={{ transform: `translateX(calc(-${currentIndex} * 50%))` }}
+                                style={{ transform: `translateX(calc(-${currentIndex} * 40%))` }}
+                                onTransitionEnd={handleTransitionEnd}
                             >
-                                {services.map((service, idx) => (
+                                {extendedServices.map((service, idx) => (
                                     <div
-                                        key={`desk-${service.title}-${idx}`}
-                                        className="w-1/2 flex-shrink-0 px-2 md:px-4"
+                                        key={`desk-${idx}`}
+                                        className="w-[40%] flex-shrink-0 px-2 md:px-4"
                                     >
                                         {renderCard(service, idx)}
                                     </div>
