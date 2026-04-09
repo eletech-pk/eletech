@@ -17,6 +17,7 @@ const applicationSchema = z.object({
         .min(50, "Cover letter must be at least 50 characters")
         .max(2000, "Cover letter must be under 2000 characters"),
     resumeUrl: z.string().url("Please enter a valid URL to your resume"),
+    _hp_field: z.string().optional(), // Honeypot field
 })
 
 type ApplicationFormData = z.infer<typeof applicationSchema>
@@ -44,6 +45,9 @@ export function ApplicationModal({
         reset,
     } = useForm<ApplicationFormData>({
         resolver: zodResolver(applicationSchema),
+        defaultValues: {
+            _hp_field: "",
+        }
     })
 
     const onSubmit = async (data: ApplicationFormData) => {
@@ -148,6 +152,19 @@ export function ApplicationModal({
                                 onSubmit={handleSubmit(onSubmit)}
                                 className="p-6 space-y-5"
                             >
+                                {/* Honeypot - bot protection */}
+                                <div
+                                    aria-hidden="true"
+                                    className="absolute opacity-0 pointer-events-none -z-10"
+                                >
+                                    <input
+                                        type="text"
+                                        tabIndex={-1}
+                                        autoComplete="off"
+                                        {...register("_hp_field")}
+                                    />
+                                </div>
+
                                 {/* Name */}
                                 <div>
                                     <label className="block text-sm font-medium mb-1.5">

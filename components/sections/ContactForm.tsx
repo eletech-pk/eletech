@@ -12,6 +12,7 @@ const formSchema = z.object({
     name: z.string().min(2, { message: "Name must be at least 2 characters." }),
     email: z.string().email({ message: "Invalid email address." }),
     message: z.string().min(10, { message: "Message must be at least 10 characters." }),
+    _hp_field: z.string().optional(), // Honeypot
 })
 
 export function ContactForm() {
@@ -25,6 +26,7 @@ export function ContactForm() {
             name: "",
             email: "",
             message: "",
+            _hp_field: "",
         },
     })
 
@@ -62,6 +64,18 @@ export function ContactForm() {
         <div className="w-full max-w-md mx-auto p-6 bg-card rounded-xl border border-border">
             <h2 className="text-2xl font-bold mb-6">Send us a message</h2>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                {/* Honeypot - bot protection */}
+                <div
+                    aria-hidden="true"
+                    className="absolute opacity-0 pointer-events-none -z-10"
+                >
+                    <input
+                        type="text"
+                        tabIndex={-1}
+                        autoComplete="off"
+                        {...form.register("_hp_field")}
+                    />
+                </div>
                 <div className="space-y-2">
                     <label htmlFor="name" className="text-sm font-medium">Name</label>
                     <input

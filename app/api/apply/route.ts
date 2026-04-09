@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { writeClient } from "@/sanity/lib/write-client";
+import { checkRateLimit } from "@/lib/utils/rate-limit";
 
 const applicationSchema = z.object({
     name: z.string().min(2),
@@ -10,6 +11,7 @@ const applicationSchema = z.object({
     resumeUrl: z.string().url(),
     jobTitle: z.string(),
     jobSlug: z.string(),
+    _hp_field: z.string().optional(), // Honeypot field
 });
 
 export async function POST(req: NextRequest) {
@@ -17,7 +19,27 @@ export async function POST(req: NextRequest) {
         const body = await req.json();
         const data = applicationSchema.parse(body);
 
-        // Check if write token is configured
+        // 1. Bot Protection: Check Honeypot
+        if (data._hp_field && data._hp_field.length > 0) {
+            console.warn("Honeypot triggered, possible bot submission.");
+            return NextResponse.json(
+                { message: "Application submitted successfully" }, // Fake success to mislead bots
+                { status: 201 }
+            );
+        }
+
+        // 2. Rate Limiting based on IP
+        const ip = req.headers.get("x-forwarded-for") || "anonymous";
+        const { success } = checkRateLimit(ip);
+
+        if (!success) {
+            return NextResponse.json(
+                { error: "Too many submissions. Please try again later." },
+                { status: 429 }
+            );
+        }
+
+        // 3. Configuration Check
         if (!process.env.SANITY_API_WRITE_TOKEN) {
             return NextResponse.json(
                 {
@@ -27,7 +49,7 @@ export async function POST(req: NextRequest) {
             );
         }
 
-        // Create a jobApplication document in Sanity
+        // 4. Document Creation
         await writeClient.create({
             _type: "jobApplication",
             jobTitle: data.jobTitle,
