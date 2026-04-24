@@ -14,16 +14,17 @@ const nextConfig: NextConfig = {
             key: "Content-Security-Policy",
             value: `
               default-src 'self';
-              script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vercel.live https://va.vercel-scripts.com https://cdn.cal.com;
+              script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vercel.live https://va.vercel-scripts.com https://cdn.cal.com https://app.cal.com;
               style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
               img-src 'self' blob: data: https://cdn.sanity.io https://placehold.co https://assets.cal.com;
               font-src 'self' https://fonts.gstatic.com;
+              media-src 'self' https://cdn.sanity.io;
               object-src 'none';
               base-uri 'self';
               form-action 'self';
               frame-ancestors 'none';
               frame-src https://cal.com https://app.cal.com;
-              connect-src 'self' https://*.sanity.io https://*.api.sanity.io https://vitals.vercel-insights.com;
+              connect-src 'self' https://*.sanity.io https://*.api.sanity.io https://vitals.vercel-insights.com https://app.cal.com;
               upgrade-insecure-requests;
             `.replace(/\s{2,}/g, " ").trim(),
           },
